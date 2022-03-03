@@ -59,8 +59,7 @@ Join the quran community here [https://the-quran.slack.com](https://the-quran.sl
 
 ## License
 
-The Quran is released under the terms of the GNU General Public License v3.0 . See [COPYING](COPYING) for more
-information or see [https://opensource.org/licenses/GPL-3.0][license-url] .
+The Quran is released under the terms of the GNU General Public License v3.0 . for more information see [https://opensource.org/licenses/GPL-3.0][license-url] .
 
 
 
