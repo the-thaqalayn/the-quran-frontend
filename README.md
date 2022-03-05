@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="https://en.wikipedia.org/wiki/Quran">
+    <img
+      alt="The Quran"
+      src="src/assets/images/md-logo.png"
+      width="150"
+      height="150"
+    />
+  </a>
+</p>
+<h1 align="center">The Quran</h1>
 
+This project is the frontend for [The Quran](https://the-quran-book.heroku.com). It is built using Reactjs and Bootstrap 5.
+
+
+ <!-- PROJECT SHIELDS -->
+<div align="center">
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Issues][issues-shield]][issues-url]
+[![Stargazers][stars-shield]][stars-url]
+[![GPL v3 License][license-shield]][license-url]
+
+</div>
+
+<!-- TABLE OF CONTENTS -->
+
+
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [What is The Quran?](#what-is-the-quran)
+- [Getting Started](#getting-started)
+- [The Quran community](#the-quran-community)
+- [License](#license)
+
+
+
+## What is The Quran?
+
+<!-- ![The Quran](src/assets/images/md-screenshot.png "The Quran") -->
+
+The Quran is a Message from Allah to humanity. This message was given to the Prophet (saw) in pieces over a period spanning approximately 23 years (610 CE to 632 CE). The Prophet (saw) was 40 years old when the Qur'an began to be revealed to him, and he was 63 when the revelation was completed. The language of the original message was Arabic, but it has been translated into many other languages.
+
+For more information see the [Wikipedia](https://en.wikipedia.org/wiki/Quran).
+
+## Getting Started
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+  - Ensure you have [nodejs] installed
+  - Get the source by running `git clone https://github.com/the-quran/the-quran-frontend/` or creating a [fork]
+  - Run `npm install` to do first time installation of all dependencies
 
 In the project directory, you can run:
 
-### `npm start`
+- ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  Runs the app in the development mode.\
+  Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  The page will reload when you make changes.\
+  You may also see any lint errors in the console.
 
-### `npm test`
+- ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  Launches the test runner in the interactive watch mode.\
+  See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+- ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  Builds the app for production to the `build` folder.\
+  It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  The build is minified and the filenames include the hashes.\
+  Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+ To learn React, check out the [React documentation](https://reactjs.org/).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## The Quran community  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Join the quran community here [https://the-quran.slack.com](https://the-quran.slack.com) [![SLACK](src/assets/images/md-slack.png)](https://the-quran.slack.com)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The Quran is released under the terms of the GNU General Public License v3.0 . See [COPYING](COPYING) for more
+information or see [https://opensource.org/licenses/GPL-3.0][license-url] .
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+[contributors-shield]: https://img.shields.io/github/contributors/the-quran/the-quran-frontend?style=for-the-badge
+[contributors-url]: https://github.com/the-quran/the-quran-frontend/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/the-quran/the-quran-frontend?style=for-the-badge
+[forks-url]: https://github.com/the-quran/the-quran-frontend/network/members
+[stars-shield]: https://img.shields.io/github/stars/the-quran/the-quran-frontend?style=for-the-badge
+[stars-url]: https://github.com/the-quran/the-quran-frontend/stargazers
+[issues-shield]: https://img.shields.io/github/issues/the-quran/the-quran-frontend?style=for-the-badge
+[issues-url]: https://github.com/the-quran/the-quran-frontend/issues
+[license-shield]: https://img.shields.io/github/license/the-quran/the-quran-frontend?style=for-the-badge
+[license-url]: https://opensource.org/licenses/GPL-3.0
+[product-screenshot]: images/screenshot.png
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
