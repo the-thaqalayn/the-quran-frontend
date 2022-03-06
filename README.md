@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://en.wikipedia.org/wiki/Quran">
+  <a href="https://the-quran-book.herokuapp.com">
     <img
       alt="The Quran"
       src="public/assets/images/md-logo.png"
@@ -10,7 +10,7 @@
 </p>
 <h1 align="center">The Quran</h1>
 
-This project is the frontend for [The Quran](https://the-quran-book.heroku.com). It is built using Reactjs and Bootstrap 5.
+This project is the frontend for [The Quran](https://the-quran-book.herokuapp.com). It is built using Reactjs and Bootstrap 5.
 
 
  <!-- PROJECT SHIELDS -->
