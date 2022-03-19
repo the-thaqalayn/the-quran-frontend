@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-
+import SearchAppBar from './components/header/header.component'
 function App() {
   return (
     <div className="App">
+      <SearchAppBar/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
