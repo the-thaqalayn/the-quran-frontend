@@ -49,11 +49,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
   - Ensure you have [nodejs] installed
   - Get the source by running `git clone https://github.com/the-quran/the-quran-frontend/` or creating a [fork]
-  - Run `yarn` to do first time installation of all dependencies
+  - Run `npm install` or `yarn` to do first time installation of all dependencies
 
 In the project directory, you can run:
 
-- ####  `yarn start`
+- #### `npm start` or `yarn start`
 
   Runs the app in the development mode.\
   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -61,12 +61,12 @@ In the project directory, you can run:
   The page will reload when you make changes.\
   You may also see any lint errors in the console.
 
-- #### `yarn test`
+- #### `npm test` or `yarn test`
 
   Launches the test runner in the interactive watch mode.\
   See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- #### `yarn build` 
+- #### `npm run build` or `yarn build` 
 
   Builds the app for production to the `build` folder.\
   It correctly bundles React in production mode and optimizes the build for the best performance.
