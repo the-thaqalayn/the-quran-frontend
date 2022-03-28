@@ -4,7 +4,7 @@ const INITIAL_STATE ={
     hidden: true
 };
 
-const headerReducer = (state=INITIAL_STATE,acttion)=>{
+const headerReducer = (state=INITIAL_STATE,action)=>{
     switch (action.type) {
         case HeaderActionTypes.TOGGLE_APPBAR_HIDDEN:            
             return {

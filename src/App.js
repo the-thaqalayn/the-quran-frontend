@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <SearchAppBar/>
       {/* <Switch>
-        <Route exact path='/' component="" />
+        <Route exact path='/' component="SearchAppBar" />
         <Route
             exact
             path='/signin'
@@ -23,7 +23,7 @@ function App() {
           />
       </Switch> */}
 
-      {/* <header className="App-header">
+      <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -36,7 +36,7 @@ function App() {
         >
           Learn React
         </a>
-      </header> */}
+      </header>
     </div>
   );
 }
