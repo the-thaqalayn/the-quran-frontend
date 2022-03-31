@@ -1,15 +1,24 @@
 import {all,call,takeLatest,put} from 'redux-saga/effects';
 import HeaderActionTypes from './header.types';
-// import toggleAppBar from './header.actions';
+import {toggleDrawer} from './header.actions';
 
-// export function* toggleAppBar(){
-//  yield put(toggleAppBar);
-// }
+export function* toggleDrawerCheck({ payload:{anchor,open,event} }){
+    if (
+        event &&
+        event.type === 'keydown' &&
+        (event.key === 'Tab' || event.key === 'Shift')
+      ) {
+        return;
+      }else
+       yield put(toggleDrawer({anchor,open}));
+    }
 
-// export function* onToggleAppBar(){
-//  yield takeLatest(HeaderActionTypes.TOGGLE_APPBAR_HIDDEN,toggleAppBar);
-// }
+export function* onToggleDrawerCheck(){
+ yield takeLatest(HeaderActionTypes.TOGGLE_DRAWER_CHECK,toggleDrawerCheck);
+}
 
 export function* headerSagas(){
-    yield all([]);
+    yield all([
+        call(onToggleDrawerCheck)
+    ]);
 }

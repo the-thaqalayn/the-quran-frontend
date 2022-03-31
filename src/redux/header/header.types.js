@@ -1,4 +1,5 @@
 const HeaderActionTypes={
-    TOGGLE_APPBAR_HIDDEN: 'TOGGLE_APPBAR_HIDDEN'
+    TOGGLE_DRAWER_CHECK: 'TOGGLE_DRAWER_CHECK',
+    TOGGLE_DRAWER: 'TOGGLE_DRAWER',
    };
    export default HeaderActionTypes;

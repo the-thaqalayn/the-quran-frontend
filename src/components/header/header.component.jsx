@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,14 +17,10 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import TuneIcon from '@mui/icons-material/Tune';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
+import SwipeableTemporaryDrawer from '../drawer/drawer.component';
+
+import {toggleDrawerCheck} from '../../redux/header/header.actions';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -83,7 +81,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+const PrimarySearchAppBar = ({toggleDrawer}) =>{
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -107,54 +106,6 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   
-  const [state, setState] = React.useState(false);
-  const drawerWidth = 250;
-  const toggleDrawer = (open) => (event) => {
-    console.log(event);
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
-    setState(open);
-  };
-
-  const list = () => (
-    <Box
-      sx={{ width: drawerWidth }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
- 
-
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -247,7 +198,7 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 ,flexGrow:1}}
-            onClick={toggleDrawer(true)}
+            onClick={toggleDrawer('left',true)}
           >
             <MenuIcon />
           </IconButton>
@@ -337,17 +288,18 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
-      <React.Fragment key='left'>         
-          <SwipeableDrawer
-            anchor='left'
-            open={state}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
-            {list()}
-          </SwipeableDrawer>
-        </React.Fragment>     
+      {renderMenu}   
+      <SwipeableTemporaryDrawer/>   
     </Box>
   );
 }
+
+
+const mapDispatchToProps = dispatch =>({
+  toggleDrawer: (anchor,open)=>(event)=> dispatch(toggleDrawerCheck({anchor,open,event}))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(PrimarySearchAppBar);
