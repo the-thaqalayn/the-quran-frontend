@@ -69,11 +69,9 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
 
   return (
     <div>
-    {console.log('-----')}
-      {console.log(drawer)}
       {['left', 'right', 'top', 'bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
           <SwipeableDrawer
             anchor={anchor}
             open={drawer[anchor]}

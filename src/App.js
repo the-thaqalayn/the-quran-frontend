@@ -1,12 +1,18 @@
 import * as React from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom';
 
-import logo from './logo.svg';
-import './App.css';
-import SearchAppBar from './components/header/header.component'
+import { CssBaseline,useMediaQuery} from '@mui/material';
+import { createTheme,ThemeProvider} from '@mui/material/styles';
+
+import {Container} from '@mui/material';
+import {grey} from '@mui/material/colors';
+
+import SearchAppBar from 'components/header/header.component';
+import Surah from 'components/surah/surah.component';
 function App() {
   return (
-    <div className="App">
+    <React.Fragment>
+       <CssBaseline />
       <SearchAppBar/>
       {/* <Switch>
         <Route exact path='/' component="SearchAppBar" />
@@ -22,22 +28,8 @@ function App() {
             }
           />
       </Switch> */}
-
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Surah/>
+    </React.Fragment>
   );
 }
 
