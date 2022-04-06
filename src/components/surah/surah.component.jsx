@@ -1,11 +1,22 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import {Container,Box} from '@mui/material';
 import {grey} from '@mui/material/colors';
 
+import {loadSurahStart} from 'redux/surah/surah.actions';
+import {selectLoadedSurah} from 'redux/surah/surah.selector';
+import {fetchSurah} from 'redux/surah/surah.utils';
 // import logo from 'logo.svg';
  import 'App.css';
 import Ayah from 'components/ayah/ayah.component';
-const Surah = () => {
+// const Surah = () => {
+const Surah = ({loadedSurah:{chapter,currentPage,verses},loadSurahStart}) => {
+
+        useEffect(()=>{
+            loadSurahStart({chapter,currentPage});
+        },[chapter,currentPage]);
 
     return (
 
@@ -25,9 +36,24 @@ const Surah = () => {
     //   </header>
     <Box sx={{bgcolor:grey[100],pt:20,   minHeight: '100vh'}}>
         <Container> 
-        <Ayah/>
+            {verses.map((v)=>(
+                <Ayah key={v.verseKey} {...v}/>
+            ))}
+        
         </Container>
     </Box>
     );
 };
-export default Surah;
+
+const mapStateToProps = createStructuredSelector({
+    loadedSurah: selectLoadedSurah
+  });
+const mapDispatchToProps = dispatch =>({
+    loadSurahStart: (data)=>dispatch(loadSurahStart(data))
+  });
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Surah);
+// export default Surah;

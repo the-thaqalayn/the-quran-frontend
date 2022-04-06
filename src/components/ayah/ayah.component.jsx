@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React,{useEffect} from 'react';
+import { connect } from 'react-redux';
+
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -15,6 +17,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+import {getFontFaceNameForPage} from 'redux/surah/surah.utils';
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -26,19 +30,25 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const Ayah = () => {
-  const [expanded, setExpanded] = React.useState(false);
+// const Ayah = ({pageNumber,loadFontFace}) => {
 
+//   useEffect(()=>{
+//     fetchAyah();
+//     loadFontFace(pageNumber);
+//   },[pageNumber]);
+const Ayah = ({verseKey,text,sajdahNumber,pageNumber}) => {
+  const [expanded, setExpanded] = React.useState(false);
+  const versevariant=getFontFaceNameForPage(pageNumber);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  console.log(verseKey);
   return (
     <Card sx={{  my:2 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: cyan[100] ,width: 70, height: 30  }} variant="square">
-           <Typography variant="button" sx={{ color: cyan[600] }}>23:91</Typography> 
+           <Typography variant="button" sx={{ color: cyan[600] }}>{verseKey}</Typography> 
           </Avatar>
         }
         action={
@@ -49,13 +59,13 @@ const Ayah = () => {
        
       />
       
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+      <CardContent sx={{textAlign:'end',px:8}}>
+        {/* <Typography  variant={getTypographyVariant(pageNumber)} gutterBottom sx={{textAlign:'end',my:2}} > */}
+        <Typography  gutterBottom sx={{my:2 ,fontFamily:`${versevariant}`,fontSize:50,wordBreak:'break-all'}} >
+        {/* ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ */}
+          {text}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="subtitle2" gutterBottom sx={{textAlign:'start',mt:5}}>
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the mussels,
           if you like.
@@ -94,4 +104,13 @@ const Ayah = () => {
   );
 }
 
-export default Ayah;
+// const mapDispatchToProps = dispatch =>({
+//   loadFontFace: (pageNumber)=>dispatch(loadFontFace(pageNumber))
+// });
+
+// export default connect(
+//   null,
+//   mapDispatchToProps
+// )(Ayah);
+
+ export default Ayah;

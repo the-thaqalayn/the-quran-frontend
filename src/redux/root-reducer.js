@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 import userReduser from './user/user.reducer';
 import headerReducer from "./header/header.reducer";
+import surahReducer from "./surah/surah.reducer";
 
 const persistConfig ={
     key:'root',
@@ -13,7 +14,8 @@ const persistConfig ={
 
 const rootReduser=combineReducers({
     user:userReduser,
-    header: headerReducer
+    header: headerReducer,
+    surah: surahReducer
 });
 
 export default persistReducer(persistConfig ,rootReduser);
