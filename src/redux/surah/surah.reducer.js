@@ -9,13 +9,13 @@ const INITIAL_STATE ={
         nextPage:null,
         pageNumbers:null,
         verses:[
-            {
-              verseKey:'',
-              text:'',
-              translation:'',
-              sajdahNumber:null,
-              pageNumber:null
-            }
+            // {
+            //   verseKey:'',
+            //   text:'',
+            //   translation:'',
+            //   sajdahNumber:null,
+            //   pageNumber:null
+            // }
         ]
      }
 };
@@ -27,7 +27,13 @@ const surahReducer = (state=INITIAL_STATE,action)=>{
             {
                   return {
                     ...state,
-                    loadedSurah: action.payload
+                    loadedSurah:{
+                      ...action.payload,
+                      verses:[
+                        ...state.loadedSurah.verses,
+                        ...action.payload.verses
+                      ]
+                    } 
                   };
             }
 

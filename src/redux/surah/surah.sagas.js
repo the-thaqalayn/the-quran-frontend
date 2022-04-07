@@ -9,11 +9,14 @@ export function* loadSurahStart({payload:{chapter,page}}){
     var response= yield fetchSurah(chapter,page);
    
     if(!response) return;
-    console.log(response);
+    
+    console.log('-------1s--------');
+    console.log(response);    
+    console.log('-------1e--------');
     
     const result=yield getSurahModel(response);
     result.chapter=chapter;
-    console.log('---****');
+    console.log('*******2*******');
     console.log(result);
     yield put(loadSurahSuccess(result));
         

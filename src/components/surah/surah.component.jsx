@@ -16,15 +16,16 @@ import Bismillah from 'components/bismillah/bismillah.component';
 const CHAPTERS_WITHOUT_BISMILLAH = [1, 9];
 
 // const Surah = () => {
-const Surah = ({loadedSurah:{chapter,currentPage,verses},loadSurahStart}) => {
+const Surah = ({loadedSurah:{chapter,currentPage,nextPage,verses},loadSurahStart}) => {
 
         useEffect(()=>{
-            loadSurahStart({chapter,currentPage});
-        },[chapter,currentPage]);
+          alert('first');
+            loadSurahStart({chapter,page:currentPage});
+        },[]);
 
         const sayHello = ()=> {
-          alert('You clicked me!');
-          loadSurahStart({chapter,currentPage});
+          alert(chapter+':'+nextPage);
+          loadSurahStart({chapter,page:nextPage});
         }
 
     return (
