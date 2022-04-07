@@ -11,6 +11,9 @@ import {fetchSurah} from 'redux/surah/surah.utils';
 // import logo from 'logo.svg';
  import 'App.css';
 import Ayah from 'components/ayah/ayah.component';
+import Bismillah from 'components/bismillah/bismillah.component';
+
+const CHAPTERS_WITHOUT_BISMILLAH = [1, 9];
 // const Surah = () => {
 const Surah = ({loadedSurah:{chapter,currentPage,verses},loadSurahStart}) => {
 
@@ -34,7 +37,8 @@ const Surah = ({loadedSurah:{chapter,currentPage,verses},loadSurahStart}) => {
     //       Learn React
     //     </a>
     //   </header>
-    <Box sx={{bgcolor:grey[100],pt:20,   minHeight: '100vh'}}>
+    <Box sx={{bgcolor:grey[100],pt:12,   minHeight: '100vh'}}>
+    {!CHAPTERS_WITHOUT_BISMILLAH.includes(chapter) && <Bismillah />}
         <Container> 
             {verses.map((v)=>(
                 <Ayah key={v.verseKey} {...v}/>

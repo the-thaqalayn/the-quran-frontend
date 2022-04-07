@@ -10,7 +10,7 @@ export const getFontFaceNameForPage = (pageNumber) => {
 }
 
 export const fetchSurah=(chapter,page)=>{
-     return axios.get(`https://api.quran.com/api/v4/verses/by_chapter/${chapter}?language=en&words=true&page=${page}&per_page=10`)
+     return axios.get(`https://api.quran.com/api/v4/verses/by_chapter/${chapter}?language=en&words=true&page=${page}&per_page=270`)
        
 };
 

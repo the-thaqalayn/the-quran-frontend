@@ -4,7 +4,7 @@ import {} from './surah.utils';
 const INITIAL_STATE ={
     loadedFontFaces: [],
     loadedSurah:{
-        chapter:114,
+        chapter:10,
         currentPage:1,
         nextPage:null,
         pageNumbers:null,

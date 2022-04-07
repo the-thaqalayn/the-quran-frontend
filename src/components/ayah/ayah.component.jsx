@@ -11,7 +11,7 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { cyan ,grey } from '@mui/material/colors';
+import { cyan ,grey,blue } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -47,8 +47,8 @@ const Ayah = ({verseKey,text,translation,sajdahNumber,pageNumber}) => {
     <Card sx={{  my:2 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: cyan[100] ,width: 70, height: 30  }} variant="square">
-           <Typography variant="button" sx={{ color: cyan[600] }}>{verseKey}</Typography> 
+          <Avatar sx={{ bgcolor: blue['50'] ,width: 50 , height: 50  }} >
+           <Typography variant='caption' sx={{ color: blue['300'] }}>{verseKey}</Typography> 
           </Avatar>
         }
         action={
@@ -59,13 +59,13 @@ const Ayah = ({verseKey,text,translation,sajdahNumber,pageNumber}) => {
        
       />
       
-      <CardContent sx={{px:8,direction:'rtl'}}>
+      <CardContent sx={{px:8,py:0,direction:'rtl'}}>
         {/* <Typography  variant={getTypographyVariant(pageNumber)} gutterBottom sx={{textAlign:'end',my:2}} > */}
-        <Typography  gutterBottom sx={{my:2 ,fontFamily:`${versevariant}`,fontSize:45,wordBreak:'break-all'}} >
+        <Typography  gutterBottom sx={{color: cyan[900],fontFamily:`${versevariant}`,fontSize:40,wordBreak:'break-all'}} >
         {/* ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ */}
           {text}
         </Typography>
-        <Typography gutterBottom sx={{mt:5,fontFamily:'uthmani', fontSize:20}}>
+        <Typography gutterBottom sx={{color: cyan[1000],fontFamily:'uthmani', fontSize:18}}>
           {translation}
         </Typography>
       </CardContent>
@@ -76,16 +76,16 @@ const Ayah = ({verseKey,text,translation,sajdahNumber,pageNumber}) => {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <ExpandMore
+        {/* <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </ExpandMore>
+        </ExpandMore> */}
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
             Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
@@ -97,7 +97,7 @@ const Ayah = ({verseKey,text,translation,sajdahNumber,pageNumber}) => {
             saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
   );
 }
