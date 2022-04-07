@@ -1,11 +1,16 @@
 import {all,call,takeLatest,put,select} from 'redux-saga/effects';
 import SurahActionTypes from './surah.types';
 import {loadFontFaceSuccess,loadFontFaceFailure,loadSurahSuccess,loadSurahFailure} from './surah.actions';
-import {selectLoadedFontFaces} from './surah.selector';
+import {selectLoadedSurah,selectLoadedFontFaces} from './surah.selector';
 import {getFontFaceSource,getFontFaceNameForPage,fetchSurah,getSurahModel} from './surah.utils';
 
 export function* loadSurahStart({payload:{chapter,page}}){
   try{
+    const loadedSurah= yield select(selectLoadedSurah);
+
+    if(loadedSurah.totalRecords <= loadedSurah.verses.length)
+    return;
+
     var response= yield fetchSurah(chapter,page);
    
     if(!response) return;

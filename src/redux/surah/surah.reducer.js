@@ -4,10 +4,11 @@ import {} from './surah.utils';
 const INITIAL_STATE ={
     loadedFontFaces: [],
     loadedSurah:{
-        chapter:10,
+        chapter:2,
         currentPage:1,
-        nextPage:null,
-        pageNumbers:null,
+        nextPage:undefined,
+        totalRecords: undefined,
+        pageNumbers:undefined,
         verses:[
             // {
             //   verseKey:'',

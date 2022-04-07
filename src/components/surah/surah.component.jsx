@@ -12,19 +12,19 @@ import {fetchSurah} from 'redux/surah/surah.utils';
  import 'App.css';
 import Ayah from 'components/ayah/ayah.component';
 import Bismillah from 'components/bismillah/bismillah.component';
-// import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller';
 const CHAPTERS_WITHOUT_BISMILLAH = [1, 9];
 
 // const Surah = () => {
-const Surah = ({loadedSurah:{chapter,currentPage,nextPage,verses},loadSurahStart}) => {
+const Surah = ({loadedSurah:{chapter,currentPage,totalRecords,nextPage,verses},loadSurahStart}) => {
 
-        useEffect(()=>{
-          alert('first');
-            loadSurahStart({chapter,page:currentPage});
-        },[]);
+        // useEffect(()=>{
+        //   alert('first');
+        //     loadSurahStart({chapter,page:currentPage});
+        // },[]);
 
-        const sayHello = ()=> {
-          alert(chapter+':'+nextPage);
+        const fetchMoreData = ()=> {
+          // alert(chapter+':'+nextPage);
           loadSurahStart({chapter,page:nextPage});
         }
 
@@ -47,11 +47,18 @@ const Surah = ({loadedSurah:{chapter,currentPage,nextPage,verses},loadSurahStart
     <Box sx={{bgcolor:grey[100],pt:12,   minHeight: '100vh'}}>
     {!CHAPTERS_WITHOUT_BISMILLAH.includes(chapter) && <Bismillah />}
     
-        <button onClick={sayHello} >load more</button>
+        {/* <button onClick={sayHello} >load more</button> */}
         <Container> 
-            {verses.map((v)=>(
-                <Ayah key={v.verseKey} {...v}/>
+        <InfiniteScroll
+            pageStart={0}
+            loadMore={fetchMoreData}
+            hasMore={!(totalRecords <= verses.length)}
+            loader={<Box sx={{justifyContent:'center'}} key={0}>Loading ...</Box>}
+        >
+            {verses.map((verse)=>(
+                <Ayah key={verse.verseKey} {...verse}/>
             ))}
+         </InfiniteScroll>
         </Container>
     </Box>
     );

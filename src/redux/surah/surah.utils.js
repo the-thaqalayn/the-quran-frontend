@@ -27,6 +27,7 @@ export const getSurahModel=async (response)=>{
   // result.chapter=response.data.pagination.chapter;
   result.currentPage=response.data.pagination.current_page;
   result.nextPage=response.data.pagination.next_page;
+  result.totalRecords=response.data.pagination.total_records;
   result.pageNumbers= [...new Set(response.data.verses.map(v => v.page_number))];
   result.verses= await Promise.all(response.data.verses.map(async v =>{
 
