@@ -14,20 +14,31 @@ export const fetchSurah=(chapter,page)=>{
        
 };
 
-export const getSurahModel=(response)=>{
+export const fetchTranslation=async (verseKey)=>{
+  const key=verseKey.replace(':','%3A');
+    const response= await axios.get(`https://api.quran.com/api/v4/quran/translations/29?verse_key=${key}`);
+    console.log(response);
+     return response.data.translations[0].text;
+};
+
+export const getSurahModel=async (response)=>{
   var result={};
  // {chapter,currentPage,nextPage,pageNumbers,verses:[{key,text,sajdahNumber}]
   // result.chapter=response.data.pagination.chapter;
   result.currentPage=response.data.pagination.current_page;
   result.nextPage=response.data.pagination.next_page;
   result.pageNumbers= [...new Set(response.data.verses.map(v => v.page_number))];
-  result.verses=response.data.verses.map(v =>{
+  result.verses= await Promise.all(response.data.verses.map(async v =>{
+
     return {   
     verseKey:v.verse_key,
     sajdahNumber:v.sajdah_number,
     pageNumber:v.page_number,
-    text: v.words.map(w=>w.text).join('')
+    text: v.words.map(w=>w.text).join(''),
+    translation: await fetchTranslation(v.verse_key)
   }
-});
- return result;
+}));
+
+return result;
+ 
 }

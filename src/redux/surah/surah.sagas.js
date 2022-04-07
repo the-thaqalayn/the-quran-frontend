@@ -11,7 +11,7 @@ export function* loadSurahStart({payload:{chapter,page}}){
     if(!response) return;
     console.log(response);
     
-    const result=getSurahModel(response);
+    const result=yield getSurahModel(response);
     result.chapter=chapter;
     console.log('---****');
     console.log(result);

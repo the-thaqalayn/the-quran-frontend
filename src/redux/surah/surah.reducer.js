@@ -12,6 +12,7 @@ const INITIAL_STATE ={
             {
               verseKey:'',
               text:'',
+              translation:'',
               sajdahNumber:null,
               pageNumber:null
             }

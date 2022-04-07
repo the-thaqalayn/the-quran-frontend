@@ -36,7 +36,7 @@ const ExpandMore = styled((props) => {
 //     fetchAyah();
 //     loadFontFace(pageNumber);
 //   },[pageNumber]);
-const Ayah = ({verseKey,text,sajdahNumber,pageNumber}) => {
+const Ayah = ({verseKey,text,translation,sajdahNumber,pageNumber}) => {
   const [expanded, setExpanded] = React.useState(false);
   const versevariant=getFontFaceNameForPage(pageNumber);
   const handleExpandClick = () => {
@@ -65,10 +65,8 @@ const Ayah = ({verseKey,text,sajdahNumber,pageNumber}) => {
         {/* ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ */}
           {text}
         </Typography>
-        <Typography variant="subtitle2" gutterBottom sx={{textAlign:'start',mt:5}}>
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+        <Typography variant="subtitle2" gutterBottom sx={{mt:5}}>
+          {translation}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
