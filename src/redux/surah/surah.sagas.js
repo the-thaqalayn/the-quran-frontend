@@ -28,6 +28,7 @@ export function* loadFontFace({payload:{pageNumbers}}){
   try{
       const loadedFontFaces= yield select(selectLoadedFontFaces);
 
+      const loadedpageNumbers=[];
       pageNumbers.forEach(pageNumber => {
         if(!loadedFontFaces.includes(pageNumber) )
         {
@@ -36,10 +37,10 @@ export function* loadFontFace({payload:{pageNumbers}}){
                                   getFontFaceSource(pageNumber));
           document.fonts.add(fontFace);
           fontFace.load();   
+          loadedpageNumbers.push(pageNumber);
         }});
 
-
-      yield put(loadFontFaceSuccess(pageNumbers));
+        yield put(loadFontFaceSuccess(loadedpageNumbers));
 
     }catch(error){
       yield put(loadFontFaceFailure(error));

@@ -12,14 +12,20 @@ import {fetchSurah} from 'redux/surah/surah.utils';
  import 'App.css';
 import Ayah from 'components/ayah/ayah.component';
 import Bismillah from 'components/bismillah/bismillah.component';
-
+// import InfiniteScroll from 'react-infinite-scroller';
 const CHAPTERS_WITHOUT_BISMILLAH = [1, 9];
+
 // const Surah = () => {
 const Surah = ({loadedSurah:{chapter,currentPage,verses},loadSurahStart}) => {
 
         useEffect(()=>{
             loadSurahStart({chapter,currentPage});
         },[chapter,currentPage]);
+
+        const sayHello = ()=> {
+          alert('You clicked me!');
+          loadSurahStart({chapter,currentPage});
+        }
 
     return (
 
@@ -39,11 +45,12 @@ const Surah = ({loadedSurah:{chapter,currentPage,verses},loadSurahStart}) => {
     //   </header>
     <Box sx={{bgcolor:grey[100],pt:12,   minHeight: '100vh'}}>
     {!CHAPTERS_WITHOUT_BISMILLAH.includes(chapter) && <Bismillah />}
+    
+        <button onClick={sayHello} >load more</button>
         <Container> 
             {verses.map((v)=>(
                 <Ayah key={v.verseKey} {...v}/>
             ))}
-        
         </Container>
     </Box>
     );
