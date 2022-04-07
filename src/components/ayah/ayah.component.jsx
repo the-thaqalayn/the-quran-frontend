@@ -59,13 +59,13 @@ const Ayah = ({verseKey,text,translation,sajdahNumber,pageNumber}) => {
        
       />
       
-      <CardContent sx={{textAlign:'end',px:8}}>
+      <CardContent sx={{px:8,direction:'rtl'}}>
         {/* <Typography  variant={getTypographyVariant(pageNumber)} gutterBottom sx={{textAlign:'end',my:2}} > */}
-        <Typography  gutterBottom sx={{my:2 ,fontFamily:`${versevariant}`,fontSize:50,wordBreak:'break-all'}} >
+        <Typography  gutterBottom sx={{my:2 ,fontFamily:`${versevariant}`,fontSize:45,wordBreak:'break-all'}} >
         {/* ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ */}
           {text}
         </Typography>
-        <Typography variant="subtitle2" gutterBottom sx={{mt:5}}>
+        <Typography gutterBottom sx={{mt:5,fontFamily:'uthmani', fontSize:20}}>
           {translation}
         </Typography>
       </CardContent>

@@ -19,16 +19,16 @@ const theme = createTheme({
       fontFamily:'p348'
     },
   }, 
-  // components: {
-  //   MuiCssBaseline: {
-  //     styleOverrides: `
-  //       @font-face {
-  //         font-family: 'p348';
-  //         src: url('${process.env.PUBLIC_URL}/assets/fonts/v1/p348.woff2') format('woff2') ,url('/assets/fonts/v1/p348.woff') format('woff'), url('${process.env.PUBLIC_URL}/assets/fonts/v1/p348.ttf') format('truetype');
-  //       }
-  //     `,
-  //   },
-  // },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'uthmani';
+          src: url('${process.env.PUBLIC_URL}/assets/fonts/uthmani/uthmani.woff2') format('woff2') ,url('/assets/fonts/uthmani/uthmani.woff') format('woff'), url('${process.env.PUBLIC_URL}/assets/fonts/uthmani/uthmani.otf') format('truetype');
+        }
+      `,
+    },
+  },
 });
 
 function App() {
