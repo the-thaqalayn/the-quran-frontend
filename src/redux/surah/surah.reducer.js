@@ -3,6 +3,7 @@ import {} from './surah.utils';
 
 const INITIAL_STATE ={
     loadedFontFaces: [],
+    chapters:[],
     loadedSurah:{
         chapter:2,
         currentPage:1,
@@ -23,6 +24,14 @@ const INITIAL_STATE ={
 
 const surahReducer = (state=INITIAL_STATE,action)=>{
     switch (action.type) {
+
+        case SurahActionTypes.LOAD_SURAH_LIST_SUCCESS:
+            {
+                  return {
+                    ...state,
+                    chapters:action.payload,
+                  };
+            }
 
         case SurahActionTypes.LOAD_SURAH_SUCCESS:
             {

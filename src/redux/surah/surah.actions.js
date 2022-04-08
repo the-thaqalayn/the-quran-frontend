@@ -1,5 +1,18 @@
 import SurahActionTypes from './surah.types';
 
+export const loadSurahListStart = () =>({
+    type: SurahActionTypes.LOAD_SURAH_LIST_START,
+   
+});
+export const loadSurahListSuccess = (data) =>({
+    type: SurahActionTypes.LOAD_SURAH_LIST_SUCCESS,
+    payload: data
+});
+export const loadSurahListFailure = ({error}) =>({
+    type: SurahActionTypes.LOAD_SURAH_LIST_FAILURE,
+    payload: {error}
+});
+
 export const loadSurahStart = ({chapter,page}) =>({
     type: SurahActionTypes.LOAD_SURAH_START,
     payload: {chapter,page}

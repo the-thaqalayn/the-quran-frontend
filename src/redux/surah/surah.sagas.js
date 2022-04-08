@@ -1,8 +1,30 @@
 import {all,call,takeLatest,put,select} from 'redux-saga/effects';
 import SurahActionTypes from './surah.types';
-import {loadFontFaceSuccess,loadFontFaceFailure,loadSurahSuccess,loadSurahFailure} from './surah.actions';
-import {selectLoadedSurah,selectLoadedFontFaces} from './surah.selector';
-import {getFontFaceSource,getFontFaceNameForPage,fetchSurah,getSurahModel} from './surah.utils';
+import {
+    loadFontFaceSuccess,loadFontFaceFailure,
+    loadSurahListSuccess,loadSurahListFailure,
+    loadSurahSuccess,loadSurahFailure} from './surah.actions';
+import {selectSurahList,selectLoadedSurah,selectLoadedFontFaces} from './surah.selector';
+import {getFontFaceSource,getFontFaceNameForPage,fetchSurahList,fetchSurah,getSurahModel} from './surah.utils';
+
+export function* loadSurahListStart(){
+  try{
+    const chapters= yield select(selectSurahList);
+
+    if(chapters.length>0)
+    return;
+
+    var result= yield fetchSurahList();
+   
+    if(!result) return;    
+    
+    yield put(loadSurahListSuccess(result));
+        
+  }catch(error){
+    yield put(loadSurahListFailure(error));
+  }
+
+}
 
 export function* loadSurahStart({payload:{chapter,page}}){
   try{
@@ -55,6 +77,9 @@ export function* loadFontFace({payload:{pageNumbers}}){
     }
 
 }
+export function* onLoadSurahListStart(){
+ yield takeLatest(SurahActionTypes.LOAD_SURAH_LIST_START,loadSurahListStart);
+}
 export function* onLoadSurahStart(){
  yield takeLatest(SurahActionTypes.LOAD_SURAH_START,loadSurahStart);
 }
@@ -64,6 +89,7 @@ export function* onLoadFontFace(){
 
 export function* surahSagas(){
     yield all([
+      call(onLoadSurahListStart),
       call(onLoadSurahStart),
       call(onLoadFontFace)
     ]);

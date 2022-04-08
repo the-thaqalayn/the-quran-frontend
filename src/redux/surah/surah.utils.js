@@ -21,6 +21,11 @@ export const fetchTranslation=async (verseKey)=>{
      return response.data.translations[0].text;
 };
 
+export const fetchSurahList=async ()=>{  
+    const response= await axios.get(`https://api.quran.com/api/v4/chapters?language=en`);   
+     return response.data.chapters;
+};
+
 export const getSurahModel=async (response)=>{
   var result={};
  // {chapter,currentPage,nextPage,pageNumbers,verses:[{key,text,sajdahNumber}]
