@@ -3,7 +3,8 @@ import SurahActionTypes from './surah.types';
 import {
     loadFontFaceSuccess,loadFontFaceFailure,
     loadSurahListSuccess,loadSurahListFailure,
-    loadSurahSuccess,loadSurahFailure} from './surah.actions';
+    loadSurahSuccess,loadSurahFailure,
+    loadSurahStart} from './surah.actions';
 import {selectSurahList,selectLoadedSurah,selectLoadedFontFaces} from './surah.selector';
 import {getFontFaceSource,getFontFaceNameForPage,fetchSurahList,fetchSurah,getSurahModel} from './surah.utils';
 
@@ -26,7 +27,10 @@ export function* loadSurahListStart(){
 
 }
 
-export function* loadSurahStart({payload:{chapter,page}}){
+export function* changeSurahStart({payload}){  
+    yield put(loadSurahStart(payload));
+}
+export function* loadSurahStartFunc({payload:{chapter,page}}){
   try{
     const loadedSurah= yield select(selectLoadedSurah);
 
@@ -80,8 +84,11 @@ export function* loadFontFace({payload:{pageNumbers}}){
 export function* onLoadSurahListStart(){
  yield takeLatest(SurahActionTypes.LOAD_SURAH_LIST_START,loadSurahListStart);
 }
+export function* onChangeSurahStart(){
+ yield takeLatest(SurahActionTypes.CHANGE_SURAH_START,changeSurahStart);
+}
 export function* onLoadSurahStart(){
- yield takeLatest(SurahActionTypes.LOAD_SURAH_START,loadSurahStart);
+ yield takeLatest(SurahActionTypes.LOAD_SURAH_START,loadSurahStartFunc);
 }
 export function* onLoadFontFace(){
  yield takeLatest(SurahActionTypes.LOAD_SURAH_SUCCESS,loadFontFace);
@@ -90,6 +97,7 @@ export function* onLoadFontFace(){
 export function* surahSagas(){
     yield all([
       call(onLoadSurahListStart),
+      call(onChangeSurahStart),
       call(onLoadSurahStart),
       call(onLoadFontFace)
     ]);

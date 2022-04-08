@@ -21,7 +21,7 @@ import {blue,cyan} from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
-import {loadSurahListStart} from 'redux/surah/surah.actions';
+import {loadSurahListStart,changeSurahStart} from 'redux/surah/surah.actions';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -75,7 +75,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const ITEM_HEIGHT = 48;
 
-const SearchWithMenu=({currentSurah,surahs,loadSurahListStart})=> {
+const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})=> {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -137,7 +137,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart})=> {
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
+            maxHeight: ITEM_HEIGHT * 8,
             width: '42ch',
           },
         }}
@@ -146,7 +146,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart})=> {
       >
         
         {surahs.map((surah) => (
-          <MenuItem key={surah.id} selected={surah.id === currentSurah} onClick={handleClose}  >
+          <MenuItem key={surah.id} selected={surah.id === currentSurah} onClick={()=>{changeSurahStart({chapter:surah.id}); handleClose(); }}  >
            
             <Box sx={{ display:'flex',flexGrow:1,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'space-around'}}>
             <Box sx={{ display:'flex',flexGrow:4,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'flex-start'}}>
@@ -173,7 +173,8 @@ const mapStateToProps = createStructuredSelector({
   currentSurah: selectCurrentSurah
 });
 const mapDispatchToProps = dispatch =>({
-  loadSurahListStart: (data)=>dispatch(loadSurahListStart(data))
+  loadSurahListStart: (data)=>dispatch(loadSurahListStart(data)),
+  changeSurahStart: (chapter)=>dispatch(changeSurahStart(chapter))
 });
 
 export default connect(

@@ -5,7 +5,7 @@ const INITIAL_STATE ={
     loadedFontFaces: [],
     chapters:[],
     loadedSurah:{
-        chapter:2,
+        chapter:1,
         currentPage:1,
         nextPage:undefined,
         totalRecords: undefined,
@@ -25,13 +25,28 @@ const INITIAL_STATE ={
 const surahReducer = (state=INITIAL_STATE,action)=>{
     switch (action.type) {
 
-        case SurahActionTypes.LOAD_SURAH_LIST_SUCCESS:
-            {
-                  return {
-                    ...state,
-                    chapters:action.payload,
-                  };
-            }
+      case SurahActionTypes.CHANGE_SURAH_START:
+        {
+              return {
+                ...state,
+                loadedSurah:{
+                  chapter:action.payload.chapter,
+                  currentPage:action.payload.page,
+                  nextPage:undefined,
+                  totalRecords: undefined,
+                  pageNumbers:undefined,
+                  verses:[]
+               }
+              };
+        }
+
+      case SurahActionTypes.LOAD_SURAH_LIST_SUCCESS:
+        {
+              return {
+                ...state,
+                chapters:action.payload,
+              };
+        }
 
         case SurahActionTypes.LOAD_SURAH_SUCCESS:
             {
