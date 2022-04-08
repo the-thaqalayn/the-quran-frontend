@@ -10,6 +10,11 @@ export const selectSurah= state => state.surah;
 //         })
 // );
 
+export const selectCurrentSurah = createSelector(
+    [selectSurah],
+    surah => surah.loadedSurah.chapter
+);
+
 export const selectSurahList = createSelector(
     [selectSurah],
     surah => surah.chapters

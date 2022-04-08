@@ -14,18 +14,22 @@ import Surah from 'components/surah/surah.component';
 
 const theme = createTheme({
   typography: {
-    p348:{
-      fontSize:30,
-      fontFamily:'p348'
+    surahName:{
+      fontSize:38,
+      fontFamily:'surah-name'
     },
   }, 
   components: {
     MuiCssBaseline: {
       styleOverrides: `
-        @font-face {
-          font-family: 'uthmani';
-          src: url('${process.env.PUBLIC_URL}/assets/fonts/uthmani/uthmani.woff2') format('woff2') ,url('/assets/fonts/uthmani/uthmani.woff') format('woff'), url('${process.env.PUBLIC_URL}/assets/fonts/uthmani/uthmani.otf') format('truetype');
-        }
+      @font-face {
+        font-family: 'uthmani';
+        src: url('${process.env.PUBLIC_URL}/assets/fonts/uthmani/uthmani.woff2') format('woff2') ,url('/assets/fonts/uthmani/uthmani.woff') format('woff'), url('${process.env.PUBLIC_URL}/assets/fonts/uthmani/uthmani.otf') format('opentype');
+      }
+      @font-face {
+        font-family: 'surah-name';
+        src: url('${process.env.PUBLIC_URL}/assets/fonts/v1/sura_names.woff2') format('woff2') ,url('/assets/fonts/v1/sura_names.woff') format('woff'), url('${process.env.PUBLIC_URL}/assets/fonts/v1/sura_names.ttf') format('truetype'), url('${process.env.PUBLIC_URL}/assets/fonts/v1/sura_names.eot') format('embedded-opentype');
+      }
       `,
     },
   },

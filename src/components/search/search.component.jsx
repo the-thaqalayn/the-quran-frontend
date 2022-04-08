@@ -16,11 +16,11 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import InputBase from '@mui/material/InputBase';
-import {blue} from '@mui/material/colors';
+import {blue,cyan} from '@mui/material/colors';
 
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
-import {selectSurahList} from 'redux/surah/surah.selector';
+import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
 import {loadSurahListStart} from 'redux/surah/surah.actions';
 
 const Search = styled('div')(({ theme }) => ({
@@ -75,7 +75,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const ITEM_HEIGHT = 48;
 
-const SearchWithMenu=({surahs,loadSurahListStart})=> {
+const SearchWithMenu=({currentSurah,surahs,loadSurahListStart})=> {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -138,7 +138,7 @@ const SearchWithMenu=({surahs,loadSurahListStart})=> {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            width: '40ch',
+            width: '42ch',
           },
         }}
         transformOrigin={{ horizontal: 'center', vertical: 'top' }}
@@ -146,16 +146,20 @@ const SearchWithMenu=({surahs,loadSurahListStart})=> {
       >
         
         {surahs.map((surah) => (
-          <MenuItem key={surah.id} onClick={handleClose} sx={{mb:1}} >
+          <MenuItem key={surah.id} selected={surah.id === currentSurah} onClick={handleClose}  >
            
             <Box sx={{ display:'flex',flexGrow:1,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'space-around'}}>
             <Box sx={{ display:'flex',flexGrow:4,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'flex-start'}}>
-            <Avatar variant='square' sx={{ bgcolor: blue['50'] ,width: 40 , height: 40 ,mr:2  ,transform:'rotate(-45deg)',border:`1px solid ${blue['300']}`, borderRadius:1 }} >
-           <Typography variant='button' sx={{ color: blue['300'],transform:'rotate(45deg)' }}>{surah.id}</Typography> 
+            <Avatar variant='square' sx={{ bgcolor: blue['50'] ,width: 35 , height: 35 ,mr:2  ,transform:'rotate(-45deg)',border:`1px solid ${blue['300']}`, borderRadius:1 }} >
+           <Typography variant='caption' sx={{ color: blue['300'],transform:'rotate(45deg)' }}>{surah.id}</Typography> 
           </Avatar>
-            {surah.translated_name.name} 
+          <Typography variant='button' sx={{fontSize:12}}>
+          {surah.translated_name.name} 
+          </Typography>
              </Box>
-             {surah.name_arabic} 
+             <Typography variant='surahName' sx={{color: cyan['600']}}>
+                 {surah.id.toString().padStart(3, '0')} 
+             </Typography>
             </Box> 
           </MenuItem>
         ))}
@@ -165,7 +169,8 @@ const SearchWithMenu=({surahs,loadSurahListStart})=> {
 }
 
 const mapStateToProps = createStructuredSelector({
-  surahs: selectSurahList
+  surahs: selectSurahList,
+  currentSurah: selectCurrentSurah
 });
 const mapDispatchToProps = dispatch =>({
   loadSurahListStart: (data)=>dispatch(loadSurahListStart(data))
