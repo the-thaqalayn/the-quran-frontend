@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-
+import { createStructuredSelector } from 'reselect';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -17,12 +17,14 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 // import TuneIcon from '@mui/icons-material/Tune';
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import SwipeableTemporaryDrawer from '../drawer/drawer.component';
 
 import {toggleDrawerCheck} from '../../redux/header/header.actions';
 import SearchWithMenu from 'components/search/search.component';
-
+import {saveAs }  from 'file-saver';
+import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
 //   borderRadius: theme.shape.borderRadius,
@@ -38,7 +40,9 @@ import SearchWithMenu from 'components/search/search.component';
 //     width: 'auto',
 //   },
 // }));
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const LogoWrapper = styled('div')(({ theme }) => ({
   position: 'relative',
   margin: theme.spacing(0,1),
@@ -82,8 +86,27 @@ const LogoWrapper = styled('div')(({ theme }) => ({
 //   },
 // }));
 
-const PrimarySearchAppBar = ({toggleDrawer}) =>{
-  
+const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const saveFile=()=>{
+    handleClick();
+    saveAs(
+      `https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`,
+      `${currentSurah.toString().padStart(3, '0')}.mp3`
+    );
+  };
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -148,9 +171,10 @@ const PrimarySearchAppBar = ({toggleDrawer}) =>{
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <CloudDownloadIcon />
+            <CloudDownloadIcon onClick={saveFile} />           
         </IconButton>
-        <p>Messages</p>
+        <p>Download</p>
+       
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -161,7 +185,7 @@ const PrimarySearchAppBar = ({toggleDrawer}) =>{
             <InfoOutlinedIcon />
           
         </IconButton>
-        <p>Notifications</p>
+        <p>Information</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -173,7 +197,7 @@ const PrimarySearchAppBar = ({toggleDrawer}) =>{
         >
           <SettingsIcon />
         </IconButton>
-        <p>Profile</p>
+        <p>Settings</p>
       </MenuItem>
     </Menu>
   );
@@ -237,16 +261,16 @@ const PrimarySearchAppBar = ({toggleDrawer}) =>{
       
           <Box sx={{ display: { xs: 'none', md: 'flex' },flexGrow:3 ,justifyContent:'center'}}>
            
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <IconButton size="large" aria-label="download" color="inherit">
              
-                <CloudDownloadIcon />
+            <CloudDownloadIcon onClick={saveFile} />  
             
             </IconButton>
 
             <IconButton
               size="large"
               edge="end"
-              aria-label="account of current user"
+              aria-label="information"
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
@@ -257,7 +281,7 @@ const PrimarySearchAppBar = ({toggleDrawer}) =>{
 
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="settings"
               color="inherit"
             >
              <SettingsIcon/>
@@ -293,18 +317,24 @@ const PrimarySearchAppBar = ({toggleDrawer}) =>{
       </AppBar>
       {renderMobileMenu}
       {renderMenu}   
-     
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} sx={{direction:'ltr'}}>
+        <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
+        Please Wait Your Requested Download will Automatically Start in Few Seconds.
+        </Alert>
+      </Snackbar>
       <SwipeableTemporaryDrawer/>   
     </Box>
   );
 }
-
+const mapStateToProps = createStructuredSelector({
+  currentSurah: selectCurrentSurah
+});
 
 const mapDispatchToProps = dispatch =>({
   toggleDrawer: (anchor,open)=>(event)=> dispatch(toggleDrawerCheck({anchor,open,event}))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(PrimarySearchAppBar);
