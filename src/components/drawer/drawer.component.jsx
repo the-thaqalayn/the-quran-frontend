@@ -38,7 +38,7 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 ,direction:'rtl'}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -49,7 +49,7 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={text} sx={{textAlign:'right'}} />
           </ListItem>
         ))}
       </List>
@@ -60,7 +60,7 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={text} sx={{textAlign:'right'}} />
           </ListItem>
         ))}
       </List>
