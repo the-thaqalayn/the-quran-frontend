@@ -16,6 +16,22 @@ import MailIcon from '@mui/icons-material/Mail';
 import {toggleDrawerCheck} from '../../redux/header/header.actions';
 import {selectDrawer} from '../../redux/header/header.selectors';
 
+
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import {blue,cyan} from '@mui/material/colors';
+import Typography from '@mui/material/Typography';
+
+
+import VolunteerActivismOutlinedIcon from '@mui/icons-material/VolunteerActivismOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import GithubIcon from 'assets/icons8-github.svg';
+import TelegramIcon from 'assets/icons8-telegram-app.svg';
+import SlackIcon from 'assets/icons8-slack.svg';
+import InstagramIcon from 'assets/icons8-instagram.svg';
+
+
 const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
   // const [state, setState] = React.useState({
   //   top: false,
@@ -43,26 +59,76 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
+        <List>
+        <ListItem sx={{ display: 'flex',justifyContent:'center',py:0, alignItems: 'center', textAlign: 'center' }}>
+             <Typography variant='botton' sx={{mt:10,mb:7,fontWeight:'bold',fontSize:25, color: cyan['600']}}>
+                
+               Menu
+                
+             </Typography>
+        </ListItem>
+    
+    
+    
+   
+        <ListItem button key='0'>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              <HomeOutlinedIcon sx={{width:30 ,height:30}} /> 
             </ListItemIcon>
-            <ListItemText primary={text} sx={{textAlign:'right'}} />
+            <ListItemText primary='Home' sx={{textAlign:'right'}} />
           </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem button key='1'>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              <VolunteerActivismOutlinedIcon sx={{width:30 ,height:30}}/> 
             </ListItemIcon>
-            <ListItemText primary={text} sx={{textAlign:'right'}} />
+            <ListItemText primary='Donation' sx={{textAlign:'right'}} />
           </ListItem>
-        ))}
+          
+          <ListItem button key='2'>
+            <ListItemIcon>
+              <InfoOutlinedIcon sx={{width:30 ,height:30}}/> 
+            </ListItemIcon>
+            <ListItemText primary='About us' sx={{textAlign:'right'}} />
+          </ListItem>
+         <Divider sx={{mx:2}}/>
+       
+         <ListItem button key='3'>
+
+            <ListItemIcon>
+            <img src={TelegramIcon} width='30px' height='30px'/> 
+            </ListItemIcon>
+            <ListItemText primary='Telegram' sx={{textAlign:'right'}} />
+          </ListItem>
+
+          <ListItem button key='4'>
+            <ListItemIcon>
+              <img src={InstagramIcon} width='30px' height='30px'/> 
+            </ListItemIcon>
+            <ListItemText primary='Instagram' sx={{textAlign:'right'}} />
+          </ListItem>
+
+          <ListItem button key='5'>
+            <ListItemIcon>
+              <img src={GithubIcon} width='30px' height='30px'/> 
+            </ListItemIcon>
+            <ListItemText primary='Github' sx={{textAlign:'right'}} />
+          </ListItem>
+
+         <ListItem button key='6'>
+            <ListItemIcon>
+            <img src={SlackIcon} width='30px' height='30px'/> 
+            </ListItemIcon>
+            <ListItemText primary='Slack' sx={{textAlign:'right'}} />
+          </ListItem>
+
+          <Divider sx={{mx:2}}/>
+        <ListItem sx={{ display: 'flex',justifyContent:'center',mb:0, alignItems: 'center', textAlign: 'center' }}>
+               <Typography variant='botton' sx={{mt:10,mb:7,fontWeight:'bold',fontSize:12}}>
+                  
+               GPL-3.0 License
+                  
+               </Typography>
+          </ListItem>
       </List>
     </Box>
   );
