@@ -6,6 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 // import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -25,6 +26,7 @@ import {toggleDrawerCheck} from '../../redux/header/header.actions';
 import SearchWithMenu from 'components/search/search.component';
 import {saveAs }  from 'file-saver';
 import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
+import InfoMenu from 'components/info/info.component';
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
 //   borderRadius: theme.shape.borderRadius,
@@ -107,6 +109,8 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
       `${currentSurah.toString().padStart(3, '0')}.mp3`
     );
   };
+  var downloadLink=`https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`;
+      
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -133,19 +137,14 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
+      anchorEl={anchorEl}     
       id={menuId}
       keepMounted
-      transformOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
+     
       open={isMenuOpen}
       onClose={handleMenuClose}
+      transformOrigin={{ horizontal: 'center', vertical: 'top' }}
+      anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
@@ -170,21 +169,25 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <CloudDownloadIcon onClick={saveFile} />           
+      <Tooltip title="download Audios">
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={()=> window.open(downloadLink, "_blank")}>
+            {/* <CloudDownloadIcon onClick={saveFile} />            */}
+            <CloudDownloadIcon  />        
         </IconButton>
+        </Tooltip>
         <p>Download</p>
        
       </MenuItem>
       <MenuItem>
-        <IconButton
+        {/* <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
         >
             <InfoOutlinedIcon />
           
-        </IconButton>
+        </IconButton> */}
+<InfoMenu/>
         <p>Information</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -260,14 +263,14 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
           <SearchWithMenu/>
       
           <Box sx={{ display: { xs: 'none', md: 'flex' },flexGrow:3 ,justifyContent:'center'}}>
-           
-            <IconButton size="large" aria-label="download" color="inherit">
+          <Tooltip title="download Audios">
+            <IconButton size="large" aria-label="download" color="inherit"  onClick={()=> window.open(downloadLink, "_blank")}>
              
-            <CloudDownloadIcon onClick={saveFile} />  
-            
+            {/* <CloudDownloadIcon onClick={saveFile} />   */}
+          <CloudDownloadIcon />    
             </IconButton>
-
-            <IconButton
+          </Tooltip>
+            {/* <IconButton
               size="large"
               edge="end"
               aria-label="information"
@@ -277,8 +280,8 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
               color="inherit"
             >
               <InfoOutlinedIcon />
-            </IconButton>
-
+            </IconButton> */}
+<InfoMenu/>
             <IconButton
               size="large"
               aria-label="settings"
