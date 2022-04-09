@@ -1,5 +1,6 @@
 import axios from "axios";
 import _ from 'lodash';
+import Translation from 'data/Translation.json';
 
 export const getFontFaceSource = (pageNumber) =>{
 
@@ -21,6 +22,16 @@ export const fetchTranslation=async (verseKey)=>{
      return response.data.translations[0].text;
 };
 
+export const fetchLegacyTranslation=async ({chapter,id})=>{
+ // const arr=verseKey.split(":");
+  //  const response= await axios.get(`https://legacy.quran.com/quran/ajax?s=${arr[0]}&sA=${arr[1]}&eA=${arr[1]}&l=1%2C19&json=1`);
+    // console.log(arr);
+    // let data= Translation["chapters"][parseInt(arr[0])][arr[1]]['ayah']['text'];
+     let data= Translation[chapter-1][id.toString()]['ayah']['text'];
+     console.log(data);
+     return data;
+};
+
 export const fetchSurahList=async ()=>{  
     const response= await axios.get(`https://api.quran.com/api/v4/chapters?language=en`);   
      return response.data.chapters;
@@ -36,12 +47,12 @@ export const getSurahModel=async (response)=>{
   result.pageNumbers= [...new Set(response.data.verses.map(v => v.page_number))];
   result.verses= await Promise.all(response.data.verses.map(async v =>{
 
-    return {   
+    return {
     verseKey:v.verse_key,
     sajdahNumber:v.sajdah_number,
     pageNumber:v.page_number,
     text: v.words.map(w=>w.text).join(''),
-    translation: await fetchTranslation(v.verse_key)
+    translation: await fetchLegacyTranslation({chapter:v.verse_key.split(':')[0],id:v.id})
   }
 }));
 
