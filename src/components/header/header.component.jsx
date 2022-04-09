@@ -112,27 +112,27 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
   var downloadLink=`https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`;
       
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  // const handleMobileMenuClose = () => {
+  //   setMobileMoreAnchorEl(null);
+  // };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
+    // handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  // const handleMobileMenuOpen = (event) => {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // };
   
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -151,59 +151,59 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-      <Tooltip title="download Audios">
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={()=> window.open(downloadLink, "_blank")}>
-            {/* <CloudDownloadIcon onClick={saveFile} />            */}
-            <CloudDownloadIcon  />        
-        </IconButton>
-        </Tooltip>
-        <p>Download</p>
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
+//   const renderMobileMenu = (
+//     <Menu
+//       anchorEl={mobileMoreAnchorEl}
+//       anchorOrigin={{
+//         vertical: 'top',
+//         horizontal: 'right',
+//       }}
+//       id={mobileMenuId}
+//       keepMounted
+//       transformOrigin={{
+//         vertical: 'top',
+//         horizontal: 'right',
+//       }}
+//       open={isMobileMenuOpen}
+//       onClose={handleMobileMenuClose}
+//     >
+//       <MenuItem>
+//       <Tooltip title="download Audios">
+//         <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={()=> window.open(downloadLink, "_blank")}>
+//             {/* <CloudDownloadIcon onClick={saveFile} />            */}
+//             <CloudDownloadIcon  />        
+//         </IconButton>
+//         </Tooltip>
+//         <p>Download</p>
        
-      </MenuItem>
-      <MenuItem>
-        {/* <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-            <InfoOutlinedIcon />
+//       </MenuItem>
+//       <MenuItem>
+//         {/* <IconButton
+//           size="large"
+//           aria-label="show 17 new notifications"
+//           color="inherit"
+//         >
+//             <InfoOutlinedIcon />
           
-        </IconButton> */}
-<InfoMenu/>
-        <p>Information</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <SettingsIcon />
-        </IconButton>
-        <p>Settings</p>
-      </MenuItem>
-    </Menu>
-  );
+//         </IconButton> */}
+// <InfoMenu/>
+//         <p>Information</p>
+//       </MenuItem>
+//       <MenuItem onClick={handleProfileMenuOpen}>
+//         <IconButton
+//           size="large"
+//           aria-label="account of current user"
+//           aria-controls="primary-search-account-menu"
+//           aria-haspopup="true"
+//           color="inherit"
+//         >
+//           <SettingsIcon />
+//         </IconButton>
+//         <p>Settings</p>
+//       </MenuItem>
+//     </Menu>
+//   );
 
   return (
     <Box sx={{ flexGrow: 1,direction:'rtl' }}>
@@ -262,7 +262,7 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
               <Box sx={{ flexGrow: 1 }} />
           <SearchWithMenu/>
       
-          <Box sx={{ display: { xs: 'none', md: 'flex' },flexGrow:3 ,justifyContent:'center'}}>
+          <Box sx={{ display: 'flex',flexGrow:3 ,justifyContent:'center'}}>
           <Tooltip title="download Audios">
             <IconButton size="large" aria-label="download" color="inherit"  onClick={()=> window.open(downloadLink, "_blank")}>
              
@@ -291,7 +291,7 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
             </IconButton>
             
           </Box>
-          <Box sx={{flexGrow:1,display:{xs:'none',md:'flex'}}}>
+          <Box sx={{flexGrow:1,display:'flex'}}>
           <IconButton
               size="large"
               edge="end"
@@ -304,7 +304,7 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
               <AccountCircle sx={{fontSize:40}} />
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -315,10 +315,10 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
             >
               <MoreIcon />
             </IconButton>
-          </Box>
+          </Box> */}
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
+      {/* {renderMobileMenu} */}
       {renderMenu}   
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} sx={{direction:'ltr'}}>
         <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
