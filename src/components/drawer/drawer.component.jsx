@@ -30,6 +30,7 @@ import GithubIcon from 'assets/icons8-github.svg';
 import TelegramIcon from 'assets/icons8-telegram-app.svg';
 import SlackIcon from 'assets/icons8-slack.svg';
 import InstagramIcon from 'assets/icons8-instagram.svg';
+import TwitterIcon from 'assets/icons8-twitter.svg';
 
 
 const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
@@ -61,7 +62,7 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
     >
         <List>
         <ListItem sx={{ display: 'flex',justifyContent:'center',py:0, alignItems: 'center', textAlign: 'center' }}>
-             <Typography variant='botton' sx={{mt:10,mb:7,fontWeight:'bold',fontSize:25, color: cyan['600']}}>
+             <Typography variant='botton' sx={{mt:7,mb:5,fontWeight:'bold',fontSize:25, color: cyan['600']}}>
                 
                Menu
                 
@@ -99,22 +100,30 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
             </ListItemIcon>
             <ListItemText primary='Telegram' sx={{textAlign:'right'}} />
           </ListItem>
+       
+         <ListItem button key='4'>
 
-          <ListItem button key='4'>
+            <ListItemIcon>
+            <img src={TwitterIcon} width='30px' height='30px'/> 
+            </ListItemIcon>
+            <ListItemText primary='Twitter' sx={{textAlign:'right'}} />
+          </ListItem>
+
+          <ListItem button key='5'>
             <ListItemIcon>
               <img src={InstagramIcon} width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Instagram' sx={{textAlign:'right'}} />
           </ListItem>
 
-          <ListItem button key='5'>
+          <ListItem button key='6'>
             <ListItemIcon>
               <img src={GithubIcon} width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Github' sx={{textAlign:'right'}} />
           </ListItem>
 
-         <ListItem button key='6'>
+         <ListItem button key='7'>
             <ListItemIcon>
             <img src={SlackIcon} width='30px' height='30px'/> 
             </ListItemIcon>
