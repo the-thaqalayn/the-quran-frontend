@@ -1,45 +1,50 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
+import Tooltip from '@mui/material/Tooltip';
+// import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+// import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import TuneIcon from '@mui/icons-material/Tune';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+// import TuneIcon from '@mui/icons-material/Tune';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import SwipeableTemporaryDrawer from '../drawer/drawer.component';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
+import {toggleDrawerCheck} from '../../redux/header/header.actions';
+import SearchWithMenu from 'components/search/search.component';
+import {saveAs }  from 'file-saver';
+import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
+import InfoMenu from 'components/info/info.component';
+// const Search = styled('div')(({ theme }) => ({
+//   position: 'relative',
+//   borderRadius: theme.shape.borderRadius,
+//   backgroundColor: alpha(theme.palette.common.white, 0.15),
+//   '&:hover': {
+//     backgroundColor: alpha(theme.palette.common.white, 0.25),
+//   },
+//   marginRight: theme.spacing(2),
+//   marginLeft: 0,
+//   width: '100%',
+//   [theme.breakpoints.up('sm')]: {
+//     marginLeft: theme.spacing(3),
+//     width: 'auto',
+//   },
+// }));
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const LogoWrapper = styled('div')(({ theme }) => ({
   position: 'relative',
   margin: theme.spacing(0,1),
@@ -47,188 +52,162 @@ const LogoWrapper = styled('div')(({ theme }) => ({
   height:'100%'
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-const FilterIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  float:'right',
-  right:0
-}));
+// const SearchIconWrapper = styled('div')(({ theme }) => ({
+//   padding: theme.spacing(0, 2),
+//   height: '100%',
+//   position: 'absolute',
+//   pointerEvents: 'none',
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+// }));
+// const FilterIconWrapper = styled('div')(({ theme }) => ({
+//   padding: theme.spacing(0, 2),
+//   height: '100%',
+//   position: 'absolute',
+//   pointerEvents: 'none',
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center', 
+//   float:'right',
+//   right:0
+// }));
 
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//   color: 'inherit',
+//   '& .MuiInputBase-input': {
+//     padding: theme.spacing(1, 1, 1, 0),
+//     // vertical padding + font size from searchIcon
+//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+//     transition: theme.transitions.create('width'),
+//     width: '100%',
+//     [theme.breakpoints.up('md')]: {
+//       width: '20ch',
+//     },
+//   },
+// }));
 
-export default function PrimarySearchAppBar() {
+const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const saveFile=()=>{
+    handleClick();
+    saveAs(
+      `https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`,
+      `${currentSurah.toString().padStart(3, '0')}.mp3`
+    );
+  };
+  var downloadLink=`https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`;
+      
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  // const handleMobileMenuClose = () => {
+  //   setMobileMoreAnchorEl(null);
+  // };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
+    // handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  // const handleMobileMenuOpen = (event) => {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // };
   
-  const [state, setState] = React.useState(false);
-  const drawerWidth = 250;
-  const toggleDrawer = (open) => (event) => {
-    console.log(event);
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
-    setState(open);
-  };
-
-  const list = () => (
-    <Box
-      sx={{ width: drawerWidth }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
- 
-
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
+      anchorEl={anchorEl}     
       id={menuId}
       keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
+     
       open={isMenuOpen}
       onClose={handleMenuClose}
+      transformOrigin={{ horizontal: 'center', vertical: 'top' }}
+      anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <CloudDownloadIcon />
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-            <InfoOutlinedIcon />
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
+//   const renderMobileMenu = (
+//     <Menu
+//       anchorEl={mobileMoreAnchorEl}
+//       anchorOrigin={{
+//         vertical: 'top',
+//         horizontal: 'right',
+//       }}
+//       id={mobileMenuId}
+//       keepMounted
+//       transformOrigin={{
+//         vertical: 'top',
+//         horizontal: 'right',
+//       }}
+//       open={isMobileMenuOpen}
+//       onClose={handleMobileMenuClose}
+//     >
+//       <MenuItem>
+//       <Tooltip title="download Audios">
+//         <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={()=> window.open(downloadLink, "_blank")}>
+//             {/* <CloudDownloadIcon onClick={saveFile} />            */}
+//             <CloudDownloadIcon  />        
+//         </IconButton>
+//         </Tooltip>
+//         <p>Download</p>
+       
+//       </MenuItem>
+//       <MenuItem>
+//         {/* <IconButton
+//           size="large"
+//           aria-label="show 17 new notifications"
+//           color="inherit"
+//         >
+//             <InfoOutlinedIcon />
           
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <SettingsIcon />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+//         </IconButton> */}
+// <InfoMenu/>
+//         <p>Information</p>
+//       </MenuItem>
+//       <MenuItem onClick={handleProfileMenuOpen}>
+//         <IconButton
+//           size="large"
+//           aria-label="account of current user"
+//           aria-controls="primary-search-account-menu"
+//           aria-haspopup="true"
+//           color="inherit"
+//         >
+//           <SettingsIcon />
+//         </IconButton>
+//         <p>Settings</p>
+//       </MenuItem>
+//     </Menu>
+//   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1,direction:'rtl' }}>
+      <AppBar position="fixed">
         <Toolbar sx={{
             display:'flex',
             flexDirection:'row',
@@ -247,7 +226,7 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 ,flexGrow:1}}
-            onClick={toggleDrawer(true)}
+            onClick={toggleDrawer('right',true)}
           >
             <MenuIcon />
           </IconButton>
@@ -267,7 +246,7 @@ export default function PrimarySearchAppBar() {
               />
           </LogoWrapper>
           
-          <Search sx={{flexGrow:6}}>
+          {/* <Search sx={{flexGrow:6}} onClick={handleProfileMenuOpen}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -277,39 +256,42 @@ export default function PrimarySearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              
             />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' },flexGrow:3 ,justifyContent:'center'}}>
-           
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          </Search> */}
+              <Box sx={{ flexGrow: 1 }} />
+          <SearchWithMenu/>
+      
+          <Box sx={{ display: 'flex',flexGrow:3 ,justifyContent:'center'}}>
+          <Tooltip title="download Audios">
+            <IconButton size="large" aria-label="download" color="inherit"  onClick={()=> window.open(downloadLink, "_blank")}>
              
-                <CloudDownloadIcon />
-            
+            {/* <CloudDownloadIcon onClick={saveFile} />   */}
+          <CloudDownloadIcon />    
             </IconButton>
-
-            <IconButton
+          </Tooltip>
+            {/* <IconButton
               size="large"
               edge="end"
-              aria-label="account of current user"
+              aria-label="information"
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
               <InfoOutlinedIcon />
-            </IconButton>
-
+            </IconButton> */}
+<InfoMenu/>
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="settings"
               color="inherit"
             >
              <SettingsIcon/>
             </IconButton>
             
           </Box>
-          <Box sx={{flexGrow:1,display:{xs:'none',md:'flex'}}}>
+          <Box sx={{flexGrow:1,display:'flex'}}>
           <IconButton
               size="large"
               edge="end"
@@ -322,7 +304,7 @@ export default function PrimarySearchAppBar() {
               <AccountCircle sx={{fontSize:40}} />
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -333,21 +315,29 @@ export default function PrimarySearchAppBar() {
             >
               <MoreIcon />
             </IconButton>
-          </Box>
+          </Box> */}
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      <React.Fragment key='left'>         
-          <SwipeableDrawer
-            anchor='left'
-            open={state}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
-            {list()}
-          </SwipeableDrawer>
-        </React.Fragment>     
+      {/* {renderMobileMenu} */}
+      {renderMenu}   
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} sx={{direction:'ltr'}}>
+        <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
+        Please Wait Your Requested Download will Automatically Start in Few Seconds.
+        </Alert>
+      </Snackbar>
+      <SwipeableTemporaryDrawer/>   
     </Box>
   );
 }
+const mapStateToProps = createStructuredSelector({
+  currentSurah: selectCurrentSurah
+});
+
+const mapDispatchToProps = dispatch =>({
+  toggleDrawer: (anchor,open)=>(event)=> dispatch(toggleDrawerCheck({anchor,open,event}))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PrimarySearchAppBar);
