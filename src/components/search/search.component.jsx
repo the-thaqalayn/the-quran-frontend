@@ -22,6 +22,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
 import {loadSurahListStart,changeSurahStart} from 'redux/surah/surah.actions';
+import Filter from 'components/filter/filter.component';
+
 
 const Search = styled('div')(({ theme }) => ({
   padding: theme.spacing(0.5, 0),
@@ -48,18 +50,18 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
    alignItems: 'center',
    justifyContent: 'center',
 }));
-const FilterIconWrapper = styled('div')(({ theme }) => ({
-   padding: theme.spacing(0, 2),
-   height: '100%',
-  // position: 'absolute',
-   pointerEvents: 'auto',
-   display: 'flex',
-   alignItems: 'center',
-   justifyContent: 'center', 
-   cursor:'pointer'
-  // float:'right',
-  // left:0
-}));
+// const FilterIconWrapper = styled('div')(({ theme }) => ({
+//    padding: theme.spacing(0, 2),
+//    height: '100%',
+//   // position: 'absolute',
+//    pointerEvents: 'auto',
+//    display: 'flex',
+//    alignItems: 'center',
+//    justifyContent: 'center', 
+//    cursor:'pointer'
+//   // float:'right',
+//   // left:0
+// }));
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -137,9 +139,10 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             />
-            <FilterIconWrapper>
+            {/* <FilterIconWrapper>
               <TuneIcon />
-            </FilterIconWrapper>
+            </FilterIconWrapper> */}
+            <Filter/>
       </Search>
       <Menu
         id="long-menu"
