@@ -4,33 +4,27 @@ import { createStructuredSelector } from 'reselect';
 
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
 import {toggleDrawerCheck} from '../../redux/header/header.actions';
 import {selectDrawer} from '../../redux/header/header.selectors';
 
-
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import {blue,cyan} from '@mui/material/colors';
+import {cyan} from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 
 
 import VolunteerActivismOutlinedIcon from '@mui/icons-material/VolunteerActivismOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import GithubIcon from 'assets/icons8-github.svg';
-import TelegramIcon from 'assets/icons8-telegram-app.svg';
-import SlackIcon from 'assets/icons8-slack.svg';
-import InstagramIcon from 'assets/icons8-instagram.svg';
-import TwitterIcon from 'assets/icons8-twitter.svg';
+import GithubIcon from 'assets/images/icons8-github.svg';
+import TelegramIcon from 'assets/images/icons8-telegram-app.svg';
+import SlackIcon from 'assets/images/icons8-slack.svg';
+import InstagramIcon from 'assets/images/icons8-instagram.svg';
+import TwitterIcon from 'assets/images/icons8-twitter.svg';
 
 
 const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
@@ -96,7 +90,7 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
          <ListItem button key='3'>
 
             <ListItemIcon>
-            <img src={TelegramIcon} width='30px' height='30px'/> 
+            <img src={TelegramIcon} alt="Telegram" width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Telegram' sx={{textAlign:'right'}} />
           </ListItem>
@@ -104,28 +98,28 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
          <ListItem button key='4'>
 
             <ListItemIcon>
-            <img src={TwitterIcon} width='30px' height='30px'/> 
+            <img src={TwitterIcon} alt="Twitter"  width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Twitter' sx={{textAlign:'right'}} />
           </ListItem>
 
           <ListItem button key='5'>
             <ListItemIcon>
-              <img src={InstagramIcon} width='30px' height='30px'/> 
+              <img src={InstagramIcon} alt="Instagram" width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Instagram' sx={{textAlign:'right'}} />
           </ListItem>
 
           <ListItem button key='6'>
             <ListItemIcon>
-              <img src={GithubIcon} width='30px' height='30px'/> 
+              <img src={GithubIcon}  alt="Github" width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Github' sx={{textAlign:'right'}} />
           </ListItem>
 
          <ListItem button key='7'>
             <ListItemIcon>
-            <img src={SlackIcon} width='30px' height='30px'/> 
+            <img src={SlackIcon}  alt="Slack" width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Slack' sx={{textAlign:'right'}} />
           </ListItem>

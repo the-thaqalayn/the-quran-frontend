@@ -8,6 +8,7 @@ const INITIAL_STATE ={
         chapter:1,
         currentPage:1,
         nextPage:undefined,
+        totalPages: undefined,
         totalRecords: undefined,
         pageNumbers:undefined,
         verses:[
@@ -32,7 +33,8 @@ const surahReducer = (state=INITIAL_STATE,action)=>{
                 loadedSurah:{
                   chapter:action.payload.chapter,
                   currentPage:action.payload.page,
-                  nextPage:undefined,
+                  nextPage:action.payload.page,
+                  totalPages: undefined,
                   totalRecords: undefined,
                   pageNumbers:undefined,
                   verses:[]
