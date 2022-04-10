@@ -5,18 +5,12 @@ import { createStructuredSelector } from 'reselect';
 import {selectCurrentSurahInfo} from 'redux/surah/surah.selector';
 
 import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import {blue,cyan} from '@mui/material/colors';
+import {cyan} from '@mui/material/colors';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
@@ -86,9 +80,7 @@ const InfoMenu=({currentSurahInfo})=> {
       >
         <MenuItem sx={{ display: 'flex',justifyContent:'center',py:0, alignItems: 'center', textAlign: 'center' }}>
              <Typography variant='surahName' sx={{color: cyan['600']}}>
-                 {console.log('%%%%%%%%%%')}
-                 {console.log(currentSurahInfo)}
-                 {currentSurahInfo.id.toString().padStart(3, '0')} 
+                  {currentSurahInfo.id.toString().padStart(3, '0')} 
              </Typography>
         </MenuItem>
        

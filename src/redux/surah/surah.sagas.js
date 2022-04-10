@@ -5,7 +5,7 @@ import {
     loadSurahListSuccess,loadSurahListFailure,
     loadSurahSuccess,loadSurahFailure,
     loadSurahStart} from './surah.actions';
-import {selectSurahList,selectLoadedSurah,selectLoadedFontFaces} from './surah.selector';
+import {selectSurahList,selectLoadedFontFaces} from './surah.selector';
 import {getFontFaceSource,getFontFaceNameForPage,fetchSurahList,fetchSurah,getSurahModel} from './surah.utils';
 
 export function* loadSurahListStart(){
@@ -36,20 +36,13 @@ export function* loadSurahStartFunc({payload:{chapter,page}}){
 
     // if(loadedSurah.totalRecords <= loadedSurah.verses.length)
     // return;
-    console.log('######################');
-    console.log({chapter,page});
     var response= yield fetchSurah(chapter,page);
     
     if(!response) return;
     
-    console.log('-------1s--------');
-    console.log(response);    
-    console.log('-------1e--------');
     
     const result=yield getSurahModel(response);
     result.chapter=chapter;
-    console.log('*******2*******');
-    console.log(result);
     yield put(loadSurahSuccess(result));
         
   }catch(error){

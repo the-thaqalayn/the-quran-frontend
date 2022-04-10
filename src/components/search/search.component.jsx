@@ -7,19 +7,11 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import InputBase from '@mui/material/InputBase';
 import {blue,cyan} from '@mui/material/colors';
 
 import SearchIcon from '@mui/icons-material/Search';
-import TuneIcon from '@mui/icons-material/Tune';
 import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
 import {loadSurahListStart,changeSurahStart} from 'redux/surah/surah.actions';
 import Filter from 'components/filter/filter.component';
@@ -83,7 +75,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-const ITEM_HEIGHT = 48;
+//const ITEM_HEIGHT = 48;
 
 const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})=> {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -100,7 +92,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
   useEffect(()=>{
     loadSurahListStart();
   },[]);
-  const ITEM_HEIGHT = 48;
+  // const ITEM_HEIGHT = 48;
   return (
     <React.Fragment>
       {/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -154,7 +146,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: ITEM_HEIGHT * 8,
+            maxHeight: 48 * 8,
             width: '42ch',
           },
         }}
@@ -190,7 +182,7 @@ const mapStateToProps = createStructuredSelector({
   currentSurah: selectCurrentSurah
 });
 const mapDispatchToProps = dispatch =>({
-  loadSurahListStart: (data)=>dispatch(loadSurahListStart(data)),
+  loadSurahListStart: ()=>dispatch(loadSurahListStart()),
   changeSurahStart: ({chapter,page})=>dispatch(changeSurahStart({chapter,page}))
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "the-quran-frontend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://the-quran.github.io/the-quran-frontend/",
   "dependencies": {
@@ -12,15 +12,12 @@
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
-    "file-saver": "^2.0.5",
-    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-infinite-scroller": "^1.2.5",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
-    "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
     "reselect": "^4.1.5",
@@ -53,7 +50,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3"
-  },
-  "packageManager": "yarn@3.2.0"
+    "gh-pages": "^3.2.3",
+    "redux-logger": "^3.0.6"
+  }
 }

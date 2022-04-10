@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -7,16 +7,15 @@ import {grey} from '@mui/material/colors';
 
 import {loadSurahStart} from 'redux/surah/surah.actions';
 import {selectLoadedSurah} from 'redux/surah/surah.selector';
-import {fetchSurah} from 'redux/surah/surah.utils';
 // import logo from 'logo.svg';
- import 'App.css';
+import 'App.css';
 import Ayah from 'components/ayah/ayah.component';
 import Bismillah from 'components/bismillah/bismillah.component';
 import InfiniteScroll from 'react-infinite-scroller';
 const CHAPTERS_WITHOUT_BISMILLAH = [1, 9];
 
 // const Surah = () => {
-const Surah = ({loadedSurah:{chapter,currentPage,totalPages,totalRecords,nextPage,verses},loadSurahStart}) => {
+const Surah = ({loadedSurah:{chapter,currentPage,totalPages,nextPage,verses},loadSurahStart}) => {
 
         // useEffect(()=>{
         //   alert('first');

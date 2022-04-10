@@ -9,11 +9,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Switch from '@mui/material/Switch';
 import TuneIcon from '@mui/icons-material/Tune';
 import { styled } from '@mui/material/styles';
 
@@ -40,7 +38,6 @@ const Filter= ({loadedSurah:{chapter,totalPages,totalRecords,nextPage,verses},ch
   };
 
   const handleSubmit = () => {
-    console.log({chapter,page:change});
     handleClose();
     changeSurahStart({chapter,page:change});
   };
@@ -60,6 +57,7 @@ const Filter= ({loadedSurah:{chapter,totalPages,totalRecords,nextPage,verses},ch
    // left:0
  }));
 
+ var options = [];
 
   return (
     <React.Fragment>
@@ -99,9 +97,10 @@ const Filter= ({loadedSurah:{chapter,totalPages,totalRecords,nextPage,verses},ch
                 }}
               >
                   {(() => {
-                    const options = [];
+                    
+                    options=[];
                     for (let i = 1; i <= totalPages; i++) {
-                        options.push(<MenuItem  value={i}>Page {i}  :      [{(i-1)*10+1} to {i===totalPages? 'end' : i*10}]</MenuItem>);
+                        options.push(<MenuItem key={i} value={i}>Page {i}  :      [{(i-1)*10+1} to {i===totalPages? 'end' : i*10}]</MenuItem>);
                     }
 
                     return options;
