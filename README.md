@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://the-quran-book.herokuapp.com" target="_blank" rel="noopener noreferrer">
+  <a href="https://ghoran.herokuapp.com" target="_blank" rel="noopener noreferrer">
     <img
       alt="The Quran"
       src="src/assets/images/md-logo.png"
@@ -10,7 +10,7 @@
 </p>
 <h1 align="center">The Quran</h1>
 
-This project is the frontend for <a href="https://the-quran-book.herokuapp.com" target="_blank" rel="noopener noreferrer">The Quran</a>. It is built using Reactjs and MUI.
+This project is the frontend for <a href="https://ghoran.herokuapp.com" target="_blank" rel="noopener noreferrer">The Quran</a>. It is built using Reactjs and MUI.
 
 
  <!-- PROJECT SHIELDS -->
@@ -53,18 +53,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-- #### `npm start` 
+- #### `npm run dev` 
 
   Runs the app in the development mode.\
   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
   The page will reload when you make changes.\
   You may also see any lint errors in the console.
-
-- #### `npm test` 
-
-  Launches the test runner in the interactive watch mode.\
-  See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 - #### `npm run build` 
 
