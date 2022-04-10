@@ -7,73 +7,75 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import InputBase from '@mui/material/InputBase';
 import {blue,cyan} from '@mui/material/colors';
 
 import SearchIcon from '@mui/icons-material/Search';
-import TuneIcon from '@mui/icons-material/Tune';
 import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
 import {loadSurahListStart,changeSurahStart} from 'redux/surah/surah.actions';
+import Filter from 'components/filter/filter.component';
+
 
 const Search = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0.5, 0),
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
+   marginRight: theme.spacing(2),
+  // marginLeft: 0,
+  // width: '100%',
+  // [theme.breakpoints.up('sm')]: {
+  //   marginLeft: theme.spacing(3),
+  //   width: 'auto',
+  // },
 }));
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+   padding: theme.spacing(0, 2),
+   height: '100%',
+  // position: 'absolute',
+   pointerEvents: 'none',
+   display: 'flex',
+   alignItems: 'center',
+   justifyContent: 'center',
 }));
 // const FilterIconWrapper = styled('div')(({ theme }) => ({
-//   padding: theme.spacing(0, 2),
-//   height: '100%',
-//   position: 'absolute',
-//   pointerEvents: 'none',
-//   display: 'flex',
-//   alignItems: 'center',
-//   justifyContent: 'center', 
-//   float:'right',
-//   right:0
+//    padding: theme.spacing(0, 2),
+//    height: '100%',
+//   // position: 'absolute',
+//    pointerEvents: 'auto',
+//    display: 'flex',
+//    alignItems: 'center',
+//    justifyContent: 'center', 
+//    cursor:'pointer'
+//   // float:'right',
+//   // left:0
 // }));
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingRight: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center', 
+  flexGrow:1,
+  flexShrink:1,
+  
+  // color: 'inherit',
+  // '& .MuiInputBase-input': {
+  //   padding: theme.spacing(1, 1, 1, 0),
+  //   // vertical padding + font size from searchIcon
+  //   paddingRight: `calc(1em + ${theme.spacing(4)})`,
+  //   transition: theme.transitions.create('width'),
+  //   width: '100%',
+  //   [theme.breakpoints.up('md')]: {
+  //     width: '20ch',
+  //   },
+  // },
 }));
 
 
-const ITEM_HEIGHT = 48;
+//const ITEM_HEIGHT = 48;
 
 const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})=> {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -90,7 +92,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
   useEffect(()=>{
     loadSurahListStart();
   },[]);
-  const ITEM_HEIGHT = 48;
+  // const ITEM_HEIGHT = 48;
   return (
     <React.Fragment>
       {/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -109,23 +111,30 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
           </IconButton>
         </Tooltip>
       </Box> */}
-      <Search sx={{flexGrow:6}}  
-      onClick={handleClick}
-      aria-controls={open ? 'search-menu' : undefined}
-      aria-haspopup="true"
-      aria-expanded={open ? 'true' : undefined}
+      <Search sx={{
+        display:'flex',
+        flexGrow:6,
+        alignItems: 'center',
+        justifyContent: 'space-between', 
+      }}  
+     
       >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            {/* <FilterIconWrapper>
-              <TuneIcon />
-            </FilterIconWrapper> */}
             <StyledInputBase
               placeholder=""
               inputProps={{ 'aria-label': 'search' }}
               disabled={true}
+              onClick={handleClick}
+              aria-controls={open ? 'search-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
             />
+            {/* <FilterIconWrapper>
+              <TuneIcon />
+            </FilterIconWrapper> */}
+            <Filter/>
       </Search>
       <Menu
         id="long-menu"
@@ -137,7 +146,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: ITEM_HEIGHT * 8,
+            maxHeight: 48 * 8,
             width: '42ch',
           },
         }}
@@ -146,7 +155,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
       >
         
         {surahs.map((surah) => (
-          <MenuItem key={surah.id} selected={surah.id === currentSurah} onClick={()=>{changeSurahStart({chapter:surah.id}); handleClose(); }}  >
+          <MenuItem key={surah.id} selected={surah.id === currentSurah} onClick={()=>{changeSurahStart({chapter:surah.id,page:1}); handleClose(); }}  >
            
             <Box sx={{ display:'flex',flexGrow:1,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'space-around'}}>
             <Box sx={{ display:'flex',flexGrow:4,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'flex-start'}}>
@@ -173,8 +182,8 @@ const mapStateToProps = createStructuredSelector({
   currentSurah: selectCurrentSurah
 });
 const mapDispatchToProps = dispatch =>({
-  loadSurahListStart: (data)=>dispatch(loadSurahListStart(data)),
-  changeSurahStart: (chapter)=>dispatch(changeSurahStart(chapter))
+  loadSurahListStart: ()=>dispatch(loadSurahListStart()),
+  changeSurahStart: ({chapter,page})=>dispatch(changeSurahStart({chapter,page}))
 });
 
 export default connect(

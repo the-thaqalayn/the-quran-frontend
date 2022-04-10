@@ -2,7 +2,7 @@
   <a href="https://the-quran-book.herokuapp.com" target="_blank" rel="noopener noreferrer">
     <img
       alt="The Quran"
-      src="public/assets/images/md-logo.png"
+      src="src/assets/images/md-logo.png"
       width="150"
       height="150"
     />
@@ -38,7 +38,7 @@ This project is the frontend for <a href="https://the-quran-book.herokuapp.com" 
 
 ## What is The Quran?
 
-<!-- ![The Quran](public/assets/images/md-screenshot.png "The Quran") -->
+<!-- ![The Quran](src/assets/images/md-screenshot.png "The Quran") -->
 
 The Quran is a Message from Allah to humanity. This message was given to the Prophet (saw) in pieces over a period spanning approximately 23 years (610 CE to 632 CE). The Prophet (saw) was 40 years old when the Qur'an began to be revealed to him, and he was 63 when the revelation was completed. The language of the original message was Arabic, but it has been translated into many other languages.
 
@@ -81,7 +81,7 @@ In the project directory, you can run:
 
 ## The Quran community  
 
-Join the quran community here [https://the-quran.slack.com](https://the-quran.slack.com) [![SLACK](public/assets/images/md-slack.png)](https://the-quran.slack.com)
+Join the quran community here [https://the-quran.slack.com](https://the-quran.slack.com) [![SLACK](src/assets/images/md-slack.png)](https://the-quran.slack.com)
 
 
 

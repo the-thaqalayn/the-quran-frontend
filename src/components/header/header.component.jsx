@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,20 +13,20 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 // import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+// import MoreIcon from '@mui/icons-material/MoreVert';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 // import TuneIcon from '@mui/icons-material/Tune';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+//import Snackbar from '@mui/material/Snackbar';
+//import MuiAlert from '@mui/material/Alert';
 import SwipeableTemporaryDrawer from '../drawer/drawer.component';
 
 import {toggleDrawerCheck} from '../../redux/header/header.actions';
 import SearchWithMenu from 'components/search/search.component';
-import {saveAs }  from 'file-saver';
-import {selectSurahList,selectCurrentSurah} from 'redux/surah/surah.selector';
+import {selectCurrentSurah} from 'redux/surah/surah.selector';
 import InfoMenu from 'components/info/info.component';
+import Logo from 'assets/images/quran-logo-w.png';
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
 //   borderRadius: theme.shape.borderRadius,
@@ -42,9 +42,9 @@ import InfoMenu from 'components/info/info.component';
 //     width: 'auto',
 //   },
 // }));
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+// const Alert = React.forwardRef(function Alert(props, ref) {
+//   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
 const LogoWrapper = styled('div')(({ theme }) => ({
   position: 'relative',
   margin: theme.spacing(0,1),
@@ -89,26 +89,26 @@ const LogoWrapper = styled('div')(({ theme }) => ({
 // }));
 
 const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+  // const handleClick = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
+  // const handleClose = (event, reason) => {
+  //   if (reason === 'clickaway') {
+  //     return;
+  //   }
 
-    setOpen(false);
-  };
-  const saveFile=()=>{
-    handleClick();
-    saveAs(
-      `https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`,
-      `${currentSurah.toString().padStart(3, '0')}.mp3`
-    );
-  };
+  //   setOpen(false);
+  // };
+  // const saveFile=()=>{
+  //   handleClick();
+  //   saveAs(
+  //     `https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`,
+  //     `${currentSurah.toString().padStart(3, '0')}.mp3`
+  //   );
+  // };
   var downloadLink=`https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/${currentSurah.toString().padStart(3, '0')}.mp3`;
       
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -240,7 +240,7 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
           </Typography> */}
           <LogoWrapper sx={{flexGrow:2,display:{xs:'none',md:'flex'}}}>
               <img 
-              src={process.env.PUBLIC_URL + '/assets/images/quran-logo-w.png'}
+              src={Logo}
               alt='Logo The Quran'  
               width={100}
               />
@@ -320,11 +320,11 @@ const PrimarySearchAppBar = ({toggleDrawer,currentSurah}) =>{
       </AppBar>
       {/* {renderMobileMenu} */}
       {renderMenu}   
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} sx={{direction:'ltr'}}>
+      {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} sx={{direction:'ltr'}}>
         <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
         Please Wait Your Requested Download will Automatically Start in Few Seconds.
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
       <SwipeableTemporaryDrawer/>   
     </Box>
   );
