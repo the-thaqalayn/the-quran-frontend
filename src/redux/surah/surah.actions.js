@@ -13,9 +13,9 @@ export const loadSurahListFailure = ({error}) =>({
     payload: {error}
 });
 
-export const changeSurahStart = ({chapter}) =>({
+export const changeSurahStart = ({chapter,page}) =>({
     type: SurahActionTypes.CHANGE_SURAH_START,
-    payload: {chapter,page:1}
+    payload: {chapter,page}
 });
 
 export const loadSurahStart = ({chapter,page}) =>({

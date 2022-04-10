@@ -163,7 +163,7 @@ const SearchWithMenu=({currentSurah,surahs,loadSurahListStart,changeSurahStart})
       >
         
         {surahs.map((surah) => (
-          <MenuItem key={surah.id} selected={surah.id === currentSurah} onClick={()=>{changeSurahStart({chapter:surah.id}); handleClose(); }}  >
+          <MenuItem key={surah.id} selected={surah.id === currentSurah} onClick={()=>{changeSurahStart({chapter:surah.id,page:1}); handleClose(); }}  >
            
             <Box sx={{ display:'flex',flexGrow:1,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'space-around'}}>
             <Box sx={{ display:'flex',flexGrow:4,flexBasis:100,alignItems:'center', flexFlow:'row nowrap', justifyContent:'flex-start'}}>
@@ -191,7 +191,7 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = dispatch =>({
   loadSurahListStart: (data)=>dispatch(loadSurahListStart(data)),
-  changeSurahStart: (chapter)=>dispatch(changeSurahStart(chapter))
+  changeSurahStart: ({chapter,page})=>dispatch(changeSurahStart({chapter,page}))
 });
 
 export default connect(

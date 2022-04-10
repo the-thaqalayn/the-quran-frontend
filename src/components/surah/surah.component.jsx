@@ -16,7 +16,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 const CHAPTERS_WITHOUT_BISMILLAH = [1, 9];
 
 // const Surah = () => {
-const Surah = ({loadedSurah:{chapter,currentPage,totalRecords,nextPage,verses},loadSurahStart}) => {
+const Surah = ({loadedSurah:{chapter,currentPage,totalPages,totalRecords,nextPage,verses},loadSurahStart}) => {
 
         // useEffect(()=>{
         //   alert('first');
@@ -52,7 +52,7 @@ const Surah = ({loadedSurah:{chapter,currentPage,totalRecords,nextPage,verses},l
         <InfiniteScroll
             pageStart={0}
             loadMore={fetchMoreData}
-            hasMore={!(totalRecords <= verses.length)}
+            hasMore={(totalPages === undefined || currentPage<totalPages)}
             loader={<Box sx={{justifyContent:'center'}} key={0}>Loading ...</Box>}
         >
             {verses.map((verse)=>(

@@ -11,7 +11,7 @@ export const getFontFaceNameForPage = (pageNumber) => {
 }
 
 export const fetchSurah=(chapter,page)=>{
-     return axios.get(`https://api.quran.com/api/v4/verses/by_chapter/${chapter}?language=en&words=true&page=${page}&per_page=7`)
+     return axios.get(`https://api.quran.com/api/v4/verses/by_chapter/${chapter}?language=en&words=true&page=${page}&per_page=10`)
        
 };
 
@@ -43,6 +43,7 @@ export const getSurahModel=async (response)=>{
   // result.chapter=response.data.pagination.chapter;
   result.currentPage=response.data.pagination.current_page;
   result.nextPage=response.data.pagination.next_page;
+  result.totalPages=response.data.pagination.total_pages;
   result.totalRecords=response.data.pagination.total_records;
   result.pageNumbers= [...new Set(response.data.verses.map(v => v.page_number))];
   result.verses= await Promise.all(response.data.verses.map(async v =>{

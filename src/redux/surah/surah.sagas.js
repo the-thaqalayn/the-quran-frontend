@@ -32,13 +32,14 @@ export function* changeSurahStart({payload}){
 }
 export function* loadSurahStartFunc({payload:{chapter,page}}){
   try{
-    const loadedSurah= yield select(selectLoadedSurah);
+   // const loadedSurah= yield select(selectLoadedSurah);
 
-    if(loadedSurah.totalRecords <= loadedSurah.verses.length)
-    return;
-
+    // if(loadedSurah.totalRecords <= loadedSurah.verses.length)
+    // return;
+    console.log('######################');
+    console.log({chapter,page});
     var response= yield fetchSurah(chapter,page);
-   
+    
     if(!response) return;
     
     console.log('-------1s--------');
