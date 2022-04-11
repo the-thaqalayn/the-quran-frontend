@@ -13,8 +13,8 @@ import ListItemText from '@mui/material/ListItemText';
 import {toggleDrawerCheck} from '../../redux/header/header.actions';
 import {selectDrawer} from '../../redux/header/header.selectors';
 
-import {cyan} from '@mui/material/colors';
-import Typography from '@mui/material/Typography';
+import {cyan,grey} from '@mui/material/colors';
+import {Typography,Link} from '@mui/material';
 
 
 import VolunteerActivismOutlinedIcon from '@mui/icons-material/VolunteerActivismOutlined';
@@ -65,13 +65,15 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
     
     
     
-   
+        <Link color={grey[900]} href="https://github.com/the-quran/the-quran-frontend" target={'_blank'}>
         <ListItem button key='0'>
             <ListItemIcon>
               <HomeOutlinedIcon sx={{width:30 ,height:30}} /> 
             </ListItemIcon>
             <ListItemText primary='Home' sx={{textAlign:'right'}} />
           </ListItem>
+          </Link>
+          
           <ListItem button key='1'>
             <ListItemIcon>
               <VolunteerActivismOutlinedIcon sx={{width:30 ,height:30}}/> 
@@ -109,20 +111,24 @@ const SwipeableTemporaryDrawer = ({drawer,toggleDrawer}) => {
             </ListItemIcon>
             <ListItemText primary='Instagram' sx={{textAlign:'right'}} />
           </ListItem>
-
-          <ListItem button key='6'>
+         
+         
+          <Link color={grey[900]} href="https://github.com/the-quran/the-quran-frontend" target={'_blank'}>
+         <ListItem button key='6'>
             <ListItemIcon>
               <img src={GithubIcon}  alt="Github" width='30px' height='30px'/> 
             </ListItemIcon>
             <ListItemText primary='Github' sx={{textAlign:'right'}} />
           </ListItem>
+          </Link>
 
          <ListItem button key='7'>
             <ListItemIcon>
             <img src={SlackIcon}  alt="Slack" width='30px' height='30px'/> 
             </ListItemIcon>
-            <ListItemText primary='Slack' sx={{textAlign:'right'}} />
-          </ListItem>
+            <ListItemText primary='Slack' sx={{textAlign:'right'}} />           
+          </ListItem> 
+        
 
           <Divider sx={{mx:2}}/>
         <ListItem sx={{ display: 'flex',justifyContent:'center',mb:0, alignItems: 'center', textAlign: 'center' }}>
