@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://quran-web.herokuapp.com" target="_blank" rel="noopener noreferrer">
+  <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">
     <img
       alt="The Quran"
       src="src/assets/images/md-logo.png"
@@ -10,7 +10,7 @@
 </p>
 <h1 align="center">The Quran</h1>
 
-This project is the frontend for <a href="https://quran-web.herokuapp.com" target="_blank" rel="noopener noreferrer">The Quran</a>. It is built using Reactjs and MUI.
+This project is the frontend for <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">The Quran</a>. It is built using Reactjs and MUI.
 
 
  <!-- PROJECT SHIELDS -->
