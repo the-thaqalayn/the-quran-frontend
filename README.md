@@ -36,7 +36,7 @@ This project is the frontend for <a href="https://the-quran-book.herokuapp.com" 
 
 
 
-## What is The Quran?
+## What is the Quran?
 
 <!-- ![The Quran](src/assets/images/md-screenshot.png "The Quran") -->
 
