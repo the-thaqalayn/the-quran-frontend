@@ -10,7 +10,7 @@
 </p>
 <h1 align="center">The Quran</h1>
 
-This project is the frontend for <a href="https://the-quran-book.herokuapp.com" target="_blank" rel="noopener noreferrer">The Quran</a>. It is built using Reactjs and MUI.
+The front-end of Quran is built by React, Redux and Material UI. ( <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">https://fa-quran.netlify.app </a> )
 
 
  <!-- PROJECT SHIELDS -->
