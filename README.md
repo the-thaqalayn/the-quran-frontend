@@ -10,9 +10,6 @@
 </p>
 <h1 align="center">The Quran</h1>
 
-The front-end of Quran is built by React, Redux and Material UI. ( <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">https://fa-quran.netlify.app </a> )
-
-
  <!-- PROJECT SHIELDS -->
 <div align="center">
 
@@ -23,6 +20,10 @@ The front-end of Quran is built by React, Redux and Material UI. ( <a href="http
 [![GPL v3 License][license-shield]][license-url]
 
 </div>
+
+The front-end of Quran is built by React, Redux and Material UI. ( <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">https://fa-quran.netlify.app </a> )
+
+
 
 <!-- TABLE OF CONTENTS -->
 
