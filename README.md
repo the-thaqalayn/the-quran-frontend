@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://the-quran-book.herokuapp.com" target="_blank" rel="noopener noreferrer">
+  <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">
     <img
       alt="The Quran"
       src="src/assets/images/md-logo.png"
@@ -9,6 +9,7 @@
   </a>
 </p>
 <h1 align="center">The Quran</h1>
+
 
  <!-- PROJECT SHIELDS -->
 <div align="center">
@@ -54,7 +55,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-- #### `npm start` 
+- #### `npm run dev` 
 
   Runs the app in the development mode.\
   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
