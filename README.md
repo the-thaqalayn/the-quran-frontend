@@ -10,8 +10,6 @@
 </p>
 <h1 align="center">The Quran</h1>
 
-This project is the frontend for <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">The Quran</a>. It is built using Reactjs and MUI.
-
 
  <!-- PROJECT SHIELDS -->
 <div align="center">
@@ -23,6 +21,10 @@ This project is the frontend for <a href="https://fa-quran.netlify.app" target="
 [![GPL v3 License][license-shield]][license-url]
 
 </div>
+
+The front-end of Quran is built by React, Redux and Material UI. ( <a href="https://fa-quran.netlify.app" target="_blank" rel="noopener noreferrer">https://fa-quran.netlify.app </a> )
+
+
 
 <!-- TABLE OF CONTENTS -->
 
@@ -36,7 +38,7 @@ This project is the frontend for <a href="https://fa-quran.netlify.app" target="
 
 
 
-## What is The Quran?
+## What is the Quran?
 
 <!-- ![The Quran](src/assets/images/md-screenshot.png "The Quran") -->
 
